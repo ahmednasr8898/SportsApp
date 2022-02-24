@@ -59,6 +59,7 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="180" height="200"/>
                                         <connections>
+                                            <outlet property="myView" destination="igq-GS-ogA" id="m4J-9E-Ocg"/>
                                             <outlet property="sportNameLabel" destination="MVr-xh-njt" id="Cww-fD-LUr"/>
                                             <outlet property="sportsImageView" destination="VGy-Jk-D1n" id="Gog-no-A3r"/>
                                         </connections>
@@ -109,21 +110,30 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtv-kY-lDc">
                                                             <rect key="frame" x="292" y="42.5" width="94" height="43"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="icons8-youtube-48">
+                                                            <buttonConfiguration key="configuration" style="plain">
                                                                 <attributedString key="attributedTitle"/>
                                                             </buttonConfiguration>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </button>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zkM-pZ-Bhk">
                                                             <rect key="frame" x="12" y="22.5" width="83" height="83"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="zkM-pZ-Bhk" secondAttribute="height" multiplier="1:1" id="GmQ-E4-SCj"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTH-Ec-fId">
-                                                            <rect key="frame" x="115" y="51" width="170" height="26"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="this label for show name of league" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTH-Ec-fId">
+                                                            <rect key="frame" x="115" y="19" width="170" height="90"/>
                                                             <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -135,10 +145,15 @@
                                                         <constraint firstItem="dtv-kY-lDc" firstAttribute="height" secondItem="zJc-AR-rdy" secondAttribute="height" multiplier="0.335938" id="OXC-Qf-FVj"/>
                                                         <constraint firstAttribute="trailing" secondItem="dtv-kY-lDc" secondAttribute="trailing" constant="12" id="YWR-91-kDu"/>
                                                         <constraint firstItem="dtv-kY-lDc" firstAttribute="width" secondItem="zJc-AR-rdy" secondAttribute="width" multiplier="0.20603" constant="12" id="afT-tO-n5n"/>
-                                                        <constraint firstItem="qTH-Ec-fId" firstAttribute="leading" secondItem="zkM-pZ-Bhk" secondAttribute="trailing" constant="20" id="nCq-eI-fZN"/>
+                                                        <constraint firstItem="qTH-Ec-fId" firstAttribute="height" secondItem="zJc-AR-rdy" secondAttribute="height" multiplier="0.7" id="gCU-uV-RDa"/>
+                                                        <constraint firstItem="qTH-Ec-fId" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zkM-pZ-Bhk" secondAttribute="trailing" constant="8" symbolic="YES" id="nCq-eI-fZN"/>
                                                         <constraint firstItem="zkM-pZ-Bhk" firstAttribute="leading" secondItem="zJc-AR-rdy" secondAttribute="leading" constant="12" id="syI-2u-RTR"/>
                                                         <constraint firstItem="dtv-kY-lDc" firstAttribute="centerY" secondItem="zkM-pZ-Bhk" secondAttribute="centerY" id="v36-y0-gkc"/>
+                                                        <constraint firstItem="dtv-kY-lDc" firstAttribute="leading" secondItem="qTH-Ec-fId" secondAttribute="trailing" constant="7" id="zEu-JQ-EkL"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -147,12 +162,19 @@
                                                 <constraint firstItem="zJc-AR-rdy" firstAttribute="leading" secondItem="oRW-Og-MfR" secondAttribute="leading" constant="8" id="Af4-vF-csY"/>
                                                 <constraint firstAttribute="bottom" secondItem="zJc-AR-rdy" secondAttribute="bottom" constant="8" id="XjS-ZH-O5u"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.93333333333333335" green="0.94901960784313721" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="containerView" destination="zJc-AR-rdy" id="Qwi-GH-ByK"/>
                                             <outlet property="leagueImageView" destination="zkM-pZ-Bhk" id="Gbl-c4-WQo"/>
                                             <outlet property="leagueNameLabel" destination="qTH-Ec-fId" id="zct-VR-Mfo"/>
+                                            <outlet property="youtubeButton" destination="dtv-kY-lDc" id="UbA-dL-Nzz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -250,7 +272,6 @@
     </scenes>
     <resources>
         <image name="heart.text.square.fill" catalog="system" width="128" height="114"/>
-        <image name="icons8-youtube-48" width="48" height="48"/>
         <image name="sportscourt.fill" catalog="system" width="128" height="84"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

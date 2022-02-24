@@ -6,22 +6,75 @@
 //
 import UIKit
 import Alamofire
-import SDWebImage
+import Kingfisher
+import Reachability
+import SwiftMessages
 
 class SportsViewController: UIViewController{
     
     @IBOutlet weak var sportsCollectionView: UICollectionView!
+    let refreshControl = UIRefreshControl()
+    var reachability: Reachability?
     var sporstArray: [Sport] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+        setupRefreshControl()
         getAllSports()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        checkNetworkConnection()
     }
     
     func setupCollectionView(){
         sportsCollectionView.delegate = self
         sportsCollectionView.dataSource = self
         sportsCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
+    }
+}
+
+extension SportsViewController{
+    func setupRefreshControl(){
+        refreshControl.tintColor = UIColor.red
+        refreshControl.addTarget(self, action: #selector(addActionWhenRefresh), for: .valueChanged)
+        self.sportsCollectionView.addSubview(refreshControl)
+    }
+    
+    @objc func addActionWhenRefresh(){
+        print("Refresh CollectionView")
+        self.checkNetworkConnection()
+        refreshControl.endRefreshing()
+        self.sportsCollectionView.reloadData()
+    }
+}
+
+extension SportsViewController{
+    func checkNetworkConnection(){
+        reachability = try! Reachability()
+        guard let reachability = reachability else {return}
+        reachability.whenReachable = { reachability in
+            if reachability.connection == .wifi {
+                print("Reachable via WiFi")
+                self.displayMessage(titleMessage: "Network Done", bodyMessage: "network back", messageError: false)
+            } else {
+                print("Reachable via Cellular")
+                self.displayMessage(titleMessage: "Network Done", bodyMessage: "network back", messageError: false)
+            }
+        }
+        
+        reachability.whenUnreachable = { _ in
+            print("Not reachable")
+            self.displayMessage(titleMessage: "Network Error!!", bodyMessage: "please check your network", messageError: true)
+        }
+
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
     }
 }
 
@@ -32,10 +85,11 @@ extension SportsViewController: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SportsCell", for: indexPath) as! SportsCollectionViewCell
-        if let sportImage = sporstArray[indexPath.row].strSportThumb, let sportName = sporstArray[indexPath.row].strSport {
-            cell.sportsImageView.sd_setImage(with: URL(string: sportImage), placeholderImage: UIImage(named: "sports"))
+        if let sportImageStr = sporstArray[indexPath.row].strSportThumb,let sportImageUrl = URL(string: sportImageStr), let sportName = sporstArray[indexPath.row].strSport {
+            cell.sportsImageView.kf.setImage(with: sportImageUrl, placeholder: UIImage(named: "sports"))
             cell.sportNameLabel.text = sportName
-            cell.contentView.layer.cornerRadius = 20
+            cell.myView.backgroundColor = UIColor.white
+            cell.myView.layer.cornerRadius = 25
         }
         return cell
     }
@@ -93,6 +147,30 @@ extension SportsViewController{
                 }
             }
         }
+    }
+}
+
+extension SportsViewController{
+    func displayMessage(titleMessage: String, bodyMessage: String , messageError: Bool){
+       
+        let view = MessageView.viewFromNib(layout: MessageView.Layout.messageView)
+        
+        if messageError{
+            view.configureTheme(.error)
+        }else{
+            view.configureTheme(.success)
+        }
+        view.iconImageView?.isHidden = false
+        view.iconLabel?.isHidden = true
+        view.titleLabel?.text = titleMessage
+        view.bodyLabel?.text = bodyMessage
+        view.titleLabel?.textColor = UIColor.white
+        view.bodyLabel?.textColor = UIColor.white
+        view.button?.isHidden = true
+        
+        var config = SwiftMessages.Config()
+        config.presentationStyle = .bottom
+        SwiftMessages.show(config: config, view: view)
     }
 }
 
