@@ -198,6 +198,21 @@
             </objects>
             <point key="canvasLocation" x="2618.840579710145" y="-573.21428571428567"/>
         </scene>
+        <!--League Details View Controller-->
+        <scene sceneID="dTr-ku-AUk">
+            <objects>
+                <viewController storyboardIdentifier="LeagueDetailsViewController" id="Mpt-6J-wyP" customClass="LeagueDetailsViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Uco-pd-55p">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="3c3-J3-gdM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f6h-u9-B70" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3370" y="-572"/>
+        </scene>
         <!--Item 2-->
         <scene sceneID="bdR-Ne-yXb">
             <objects>

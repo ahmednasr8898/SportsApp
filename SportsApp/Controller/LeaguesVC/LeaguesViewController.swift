@@ -8,6 +8,7 @@
 import UIKit
 import Alamofire
 import SkeletonView
+import Kingfisher
 
 class LeaguesViewController: UIViewController {
 
@@ -18,15 +19,7 @@ class LeaguesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabelView()
-      
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            self.getAllLeagues(strSport: self.sportName ?? "") { isSuccess in
-                print("sdsd")
-            }
-            self.leagueTableView.stopSkeletonAnimation()
-            self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
-            self.leagueTableView.reloadData()
-        }
+        callAllLeagueMethod()
     }
    
     override func viewDidAppear(_ animated: Bool) {
@@ -40,6 +33,19 @@ class LeaguesViewController: UIViewController {
         leagueTableView.dataSource = self
         leagueTableView.separatorStyle = .none
         leagueTableView.estimatedRowHeight = 120
+    }
+}
+
+extension LeaguesViewController{
+    func callAllLeagueMethod(){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.getAllLeagues(strSport: self.sportName ?? "") { isSuccess in
+                print("sdsd")
+            }
+            self.leagueTableView.stopSkeletonAnimation()
+            self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+            self.leagueTableView.reloadData()
+        }
     }
 }
 
@@ -59,7 +65,8 @@ extension LeaguesViewController: SkeletonTableViewDataSource{
         if !leagueArray.isEmpty, let leagueName = leagueArray[indexPath.row].strLeague, let leagueImageStr = leagueArray[indexPath.row].strBadge, let leagueImageUrl = URL(string: leagueImageStr) {
             
             cell.leagueNameLabel.text = leagueName
-            cell.leagueImageView.kf.setImage(with: leagueImageUrl, placeholder: UIImage(named: "sports"))
+            cell.leagueImageView.kf.indicatorType = .activity
+            cell.leagueImageView.kf.setImage(with: leagueImageUrl)
             cell.youtubeButton.setImage(UIImage(named: "youtube"), for: .normal)
             cell.containerView.backgroundColor = UIColor.white
             cell.containerView.layer.cornerRadius = 20
@@ -75,6 +82,17 @@ extension LeaguesViewController: SkeletonTableViewDataSource{
 extension LeaguesViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.goToLeagueDetailsVC()
+    }
+}
+
+extension LeaguesViewController{
+    func goToLeagueDetailsVC(){
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as! LeagueDetailsViewController
+        self.present(vc, animated: true, completion: nil)
     }
 }
 
@@ -107,3 +125,5 @@ extension LeaguesViewController{
         }
     }
 }
+//https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?s=Soccer
+

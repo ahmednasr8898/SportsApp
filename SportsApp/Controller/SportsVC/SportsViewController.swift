@@ -86,6 +86,7 @@ extension SportsViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SportsCell", for: indexPath) as! SportsCollectionViewCell
         if let sportImageStr = sporstArray[indexPath.row].strSportThumb,let sportImageUrl = URL(string: sportImageStr), let sportName = sporstArray[indexPath.row].strSport {
+            cell.sportsImageView.kf.indicatorType = .activity
             cell.sportsImageView.kf.setImage(with: sportImageUrl, placeholder: UIImage(named: "sports"))
             cell.sportNameLabel.text = sportName
             cell.myView.backgroundColor = UIColor.white
@@ -174,4 +175,5 @@ extension SportsViewController{
     }
 }
 
-//https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?s=Soccer
+
+//upcomming https://www.thesportsdb.com/api/v1/json/2/eventsround.php?id=4328&r=38
