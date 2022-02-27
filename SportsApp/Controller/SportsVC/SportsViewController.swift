@@ -103,6 +103,14 @@ extension SportsViewController: UICollectionViewDelegate{
         leagueVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(leagueVC, animated: true)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let transEffect = CATransform3DTranslate(CATransform3DIdentity, -800, 100, 0)
+        cell.layer.transform = transEffect
+        UIView.animate(withDuration: 0.3) {
+            cell.layer.transform = CATransform3DIdentity
+        }
+    }
 }
 
 extension SportsViewController: UICollectionViewDelegateFlowLayout{
