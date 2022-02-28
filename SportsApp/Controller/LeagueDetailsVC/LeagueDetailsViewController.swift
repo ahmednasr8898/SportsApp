@@ -6,14 +6,20 @@
 //
 
 import UIKit
+import Alamofire
+import Kingfisher
 
 class LeagueDetailsViewController: UIViewController {
 
     @IBOutlet weak var leagueDetailsTableView: UITableView!
+    var latestArray: [Event] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        Helper.shared.getLeagueID { leagueID in
+            self.getAllLatestEvents(leagueID: leagueID)
+        }
     }
     
     func setupTableView(){
@@ -41,7 +47,7 @@ extension LeagueDetailsViewController: UITableViewDelegate, UITableViewDataSourc
             row = 1
         default:
             //array of teams
-            row = 20
+            row = latestArray.count
         }
         return row
     }
@@ -53,7 +59,33 @@ extension LeagueDetailsViewController: UITableViewDelegate, UITableViewDataSourc
             let  upCommingCell = tableView.dequeueReusableCell(withIdentifier: UpCommingTableViewCell.identifier, for: indexPath) as! UpCommingTableViewCell
             return upCommingCell
         default:
+            
             let latestCell =  tableView.dequeueReusableCell(withIdentifier: LatestEventsTableViewCell.identifier, for: indexPath) as! LatestEventsTableViewCell
+            
+            let latest = latestArray[indexPath.row]
+            if let homeTeam = latest.strHomeTeam, let awayTeam = latest.strAwayTeam, let matchPosterStr = latest.strThumb,
+               let matchPosterUrl = URL(string: matchPosterStr), let matchDate = latest.dateEvent, let matchTime = latest.strTime, let homeScore = latest.intHomeScore, let awayScore = latest.intAwayScore {
+            
+                latestCell.homeTeamLabel.text = homeTeam
+                latestCell.awayTeamLabel.text = awayTeam
+                latestCell.matchPosterImageView.kf.indicatorType = .activity
+                latestCell.matchPosterImageView.kf.setImage(with: matchPosterUrl)
+                latestCell.DateMatchLabel.text = matchDate
+                latestCell.timeMatchLabel.text = matchTime
+                latestCell.homeScoreTeamLabel.text = homeScore
+                latestCell.awayScoreTeamLabel.text = awayScore
+            }
+            else{
+                latestCell.homeTeamLabel.text = ""
+                latestCell.awayTeamLabel.text = ""
+                latestCell.matchPosterImageView.image = UIImage(named: "notFound")
+                latestCell.DateMatchLabel.text = ""
+                latestCell.timeMatchLabel.text = ""
+                latestCell.homeScoreTeamLabel.text = ""
+                latestCell.awayScoreTeamLabel.text = ""
+                latestCell.myView.layer.borderColor = UIColor.black.cgColor
+                latestCell.myView.layer.borderWidth = 1
+            }
             
             latestCell.matchPosterImageView.layer.cornerRadius = 30
             let transEffect = CATransform3DTranslate(CATransform3DIdentity, 0, -100, -800)
@@ -89,3 +121,29 @@ extension LeagueDetailsViewController: UITableViewDelegate, UITableViewDataSourc
     }
 }
 
+extension LeagueDetailsViewController{
+    func getAllLatestEvents(leagueID: String){
+        guard let url = URL(string: "https://www.thesportsdb.com/api/v1/json/2/eventsround.php?id=\(leagueID)&r=20&s=2021-2022") else {return}
+       
+        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).response { res in
+            switch res.result{
+            case .failure(_):
+                print("error")
+            case .success(_):
+                guard let data = res.data else {
+                    return
+                }
+                do{
+                    let json = try JSONDecoder().decode(UpCommingModel.self, from: data)
+                    guard let evnets = json.events else {return}
+                    self.latestArray = evnets
+                }catch{
+                    print("error when get All UpComming Events")
+                }
+                DispatchQueue.main.async {
+                    self.leagueDetailsTableView.reloadData()
+                }
+            }
+        }
+    }
+}

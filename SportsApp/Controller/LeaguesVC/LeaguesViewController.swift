@@ -39,9 +39,7 @@ class LeaguesViewController: UIViewController {
 extension LeaguesViewController{
     func callAllLeagueMethod(){
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.getAllLeagues(strSport: self.sportName ?? "") { isSuccess in
-                print("sdsd")
-            }
+            self.getAllLeagues(strSport: self.sportName ?? "")
             self.leagueTableView.stopSkeletonAnimation()
             self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
             self.leagueTableView.reloadData()
@@ -91,26 +89,29 @@ extension LeaguesViewController: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.goToLeagueDetailsVC()
+        guard let leagueID = leagueArray[indexPath.row].idLeague else {return}
+        self.goToLeagueDetailsVC(leagueID: leagueID)
+        
     }
 }
 
 extension LeaguesViewController{
-    func goToLeagueDetailsVC(){
+    func goToLeagueDetailsVC(leagueID: String){
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as! LeagueDetailsViewController
+        //move league ID to leagueDetails
+        Helper.shared.setLeagueID(leagueID: leagueID)
         self.present(vc, animated: true, completion: nil)
     }
 }
 
 extension LeaguesViewController{
-    func getAllLeagues(strSport: String,complation: @escaping (Bool)-> Void){
+    func getAllLeagues(strSport: String){
         guard let url = URL(string: "https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?c=England&s=\(strSport)") else {return}
        
         AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).response { res in
             switch res.result{
             case .failure(_):
                 print("error")
-                complation(false)
             case .success(_):
                 guard let data = res.data else {
                     return
@@ -119,10 +120,8 @@ extension LeaguesViewController{
                     let json = try JSONDecoder().decode(LeagueModel.self, from: data)
                     guard let league = json.countrys else {return}
                     self.leagueArray = league
-                    complation(true)
                 }catch{
                     print("error when get All leagues")
-                    complation(false)
                 }
                 DispatchQueue.main.async {
                     self.leagueTableView.reloadData()

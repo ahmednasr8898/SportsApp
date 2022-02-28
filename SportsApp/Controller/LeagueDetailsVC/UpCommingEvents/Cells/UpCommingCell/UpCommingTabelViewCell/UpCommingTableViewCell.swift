@@ -11,7 +11,6 @@ import Kingfisher
 class UpCommingTableViewCell: UITableViewCell {
    
     @IBOutlet weak var upCommingCollectionView: UICollectionView!
-   
     static var identifier = "UpCommingTableViewCell"
     var upCommingEventArray: [Event] = []
     static func nib ()->UINib{
@@ -22,7 +21,9 @@ class UpCommingTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         setUpCollectionView()
-        getAllUpCommingEvents()
+        Helper.shared.getLeagueID { leagueID in
+            self.getAllUpCommingEvents(leagueID: leagueID)
+        }
     }
     
     func setUpCollectionView(){
@@ -49,17 +50,23 @@ extension UpCommingTableViewCell: UICollectionViewDelegate, UICollectionViewData
             cell.posterImageView.kf.setImage(with: matchPosterUrl)
             cell.matchDateLabel.text = matchDate
             cell.matchTimeLabel.text = matchTime
-            
-            cell.myView.layer.cornerRadius = 30
-            cell.posterImageView.layer.cornerRadius = 30
-            cell.myView.layer.borderColor = UIColor.black.cgColor
-            cell.myView.layer.borderWidth = 1
-            cell.myView.layer.shadowColor = UIColor.gray.cgColor
-            cell.myView.layer.shadowOffset = CGSize(width: 4,height: 4)
-            cell.myView.layer.shadowRadius = 5
-            cell.myView.layer.shadowOpacity = 0.6
-            
+        }else{
+            cell.homeTeamNameLabel.text = ""
+            cell.awayTeamNameLabel.text = ""
+            cell.posterImageView.image = UIImage(named: "notFound")
+            cell.matchDateLabel.text = ""
+            cell.matchTimeLabel.text = ""
         }
+        
+        cell.myView.layer.cornerRadius = 30
+        cell.posterImageView.layer.cornerRadius = 30
+        cell.myView.layer.borderColor = UIColor.black.cgColor
+        cell.myView.layer.borderWidth = 1
+        cell.myView.layer.shadowColor = UIColor.gray.cgColor
+        cell.myView.layer.shadowOffset = CGSize(width: 4,height: 4)
+        cell.myView.layer.shadowRadius = 5
+        cell.myView.layer.shadowOpacity = 0.6
+        
         return cell
     }
     
@@ -69,8 +76,8 @@ extension UpCommingTableViewCell: UICollectionViewDelegate, UICollectionViewData
 }
 
 extension UpCommingTableViewCell{
-    func getAllUpCommingEvents(){
-        guard let url = URL(string: "https://www.thesportsdb.com/api/v1/json/2/eventsround.php?id=4328&r=38&s=2021-2022") else {return}
+    func getAllUpCommingEvents(leagueID: String){
+        guard let url = URL(string: "https://www.thesportsdb.com/api/v1/json/2/eventsround.php?id=\(leagueID)&r=38&s=2021-2022") else {return}
        
         AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).response { res in
             switch res.result{
