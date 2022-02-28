@@ -4,7 +4,6 @@
 //
 //  Created by Nasr on 24/02/2022.
 //
-
 import UIKit
 import Alamofire
 import Kingfisher
@@ -12,9 +11,9 @@ import Kingfisher
 class UpCommingTableViewCell: UITableViewCell {
    
     @IBOutlet weak var upCommingCollectionView: UICollectionView!
+   
     static var identifier = "UpCommingTableViewCell"
     var upCommingEventArray: [Event] = []
-    
     static func nib ()->UINib{
         return UINib(nibName: "UpCommingTableViewCell", bundle: nil)
     }
@@ -53,12 +52,13 @@ extension UpCommingTableViewCell: UICollectionViewDelegate, UICollectionViewData
             
             cell.myView.layer.cornerRadius = 30
             cell.posterImageView.layer.cornerRadius = 30
-            cell.myView.layer.borderColor = UIColor.red.cgColor
+            cell.myView.layer.borderColor = UIColor.black.cgColor
             cell.myView.layer.borderWidth = 1
             cell.myView.layer.shadowColor = UIColor.gray.cgColor
             cell.myView.layer.shadowOffset = CGSize(width: 4,height: 4)
             cell.myView.layer.shadowRadius = 5
             cell.myView.layer.shadowOpacity = 0.6
+            
         }
         return cell
     }
