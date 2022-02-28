@@ -11,8 +11,9 @@ import Kingfisher
 class UpCommingTableViewCell: UITableViewCell {
    
     @IBOutlet weak var upCommingCollectionView: UICollectionView!
-    static var identifier = "UpCommingTableViewCell"
     var upCommingEventArray: [Event] = []
+    
+    static var identifier = "UpCommingTableViewCell"
     static func nib ()->UINib{
         return UINib(nibName: "UpCommingTableViewCell", bundle: nil)
     }
@@ -77,27 +78,10 @@ extension UpCommingTableViewCell: UICollectionViewDelegate, UICollectionViewData
 
 extension UpCommingTableViewCell{
     func getAllUpCommingEvents(leagueID: String){
-        guard let url = URL(string: "https://www.thesportsdb.com/api/v1/json/2/eventsround.php?id=\(leagueID)&r=38&s=2021-2022") else {return}
-       
-        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).response { res in
-            switch res.result{
-            case .failure(_):
-                print("error")
-            case .success(_):
-                guard let data = res.data else {
-                    return
-                }
-                do{
-                    let json = try JSONDecoder().decode(UpCommingModel.self, from: data)
-                    guard let evnets = json.events else {return}
-                    self.upCommingEventArray = evnets
-                }catch{
-                    print("error when get All UpComming Events")
-                }
-                DispatchQueue.main.async {
-                    self.upCommingCollectionView.reloadData()
-                }
-            }
+        Networking.shared.getAllUpCommingEvents(leagueID: leagueID) { upCommingModel, error in
+            guard let upComming = upCommingModel?.events, error == nil else {return}
+            self.upCommingEventArray = upComming
+            self.upCommingCollectionView.reloadData()
         }
     }
 }

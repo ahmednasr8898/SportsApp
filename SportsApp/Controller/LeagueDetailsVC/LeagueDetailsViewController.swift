@@ -4,7 +4,6 @@
 //
 //  Created by Nasr on 24/02/2022.
 //
-
 import UIKit
 import Alamofire
 import Kingfisher
@@ -123,27 +122,10 @@ extension LeagueDetailsViewController: UITableViewDelegate, UITableViewDataSourc
 
 extension LeagueDetailsViewController{
     func getAllLatestEvents(leagueID: String){
-        guard let url = URL(string: "https://www.thesportsdb.com/api/v1/json/2/eventsround.php?id=\(leagueID)&r=20&s=2021-2022") else {return}
-       
-        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).response { res in
-            switch res.result{
-            case .failure(_):
-                print("error")
-            case .success(_):
-                guard let data = res.data else {
-                    return
-                }
-                do{
-                    let json = try JSONDecoder().decode(UpCommingModel.self, from: data)
-                    guard let evnets = json.events else {return}
-                    self.latestArray = evnets
-                }catch{
-                    print("error when get All UpComming Events")
-                }
-                DispatchQueue.main.async {
-                    self.leagueDetailsTableView.reloadData()
-                }
-            }
+        Networking.shared.getAllLatestEvents(leagueID: leagueID) { latestEventsModel, error in
+            guard let latestEvents = latestEventsModel?.events, error == nil else {return}
+            self.latestArray = latestEvents
+            self.leagueDetailsTableView.reloadData()
         }
     }
 }

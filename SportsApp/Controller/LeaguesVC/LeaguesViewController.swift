@@ -106,27 +106,10 @@ extension LeaguesViewController{
 
 extension LeaguesViewController{
     func getAllLeagues(strSport: String){
-        guard let url = URL(string: "https://www.thesportsdb.com/api/v1/json/2/search_all_leagues.php?c=England&s=\(strSport)") else {return}
-       
-        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).response { res in
-            switch res.result{
-            case .failure(_):
-                print("error")
-            case .success(_):
-                guard let data = res.data else {
-                    return
-                }
-                do{
-                    let json = try JSONDecoder().decode(LeagueModel.self, from: data)
-                    guard let league = json.countrys else {return}
-                    self.leagueArray = league
-                }catch{
-                    print("error when get All leagues")
-                }
-                DispatchQueue.main.async {
-                    self.leagueTableView.reloadData()
-                }
-            }
+        Networking.shared.getAllLeagues(strSport: strSport) { leagueModel, error in
+            guard let leagues = leagueModel?.countrys, error == nil else {return}
+            self.leagueArray = leagues
+            self.leagueTableView.reloadData()
         }
     }
 }

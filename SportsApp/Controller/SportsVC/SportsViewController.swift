@@ -44,7 +44,6 @@ extension SportsViewController{
     }
     
     @objc func addActionWhenRefresh(){
-        print("Refresh CollectionView")
         self.checkNetworkConnection()
         refreshControl.endRefreshing()
         self.sportsCollectionView.reloadData()
@@ -53,27 +52,12 @@ extension SportsViewController{
 
 extension SportsViewController{
     func checkNetworkConnection(){
-        reachability = try! Reachability()
-        guard let reachability = reachability else {return}
-        reachability.whenReachable = { reachability in
-            if reachability.connection == .wifi {
-                print("Reachable via WiFi")
-                self.displayMessage(titleMessage: "Network Done", bodyMessage: "network back", messageError: false)
-            } else {
-                print("Reachable via Cellular")
-                self.displayMessage(titleMessage: "Network Done", bodyMessage: "network back", messageError: false)
+        Helper.shared.checkNetworkConnectionUsingRechability { networkIsConnect in
+            if networkIsConnect{
+                Helper.shared.displayMessage(titleMessage: "Network Done", bodyMessage: "network back", messageError: false)
+            }else{
+                Helper.shared.displayMessage(titleMessage: "Network Error!!", bodyMessage: "please check your network", messageError: true)
             }
-        }
-        
-        reachability.whenUnreachable = { _ in
-            print("Not reachable")
-            self.displayMessage(titleMessage: "Network Error!!", bodyMessage: "please check your network", messageError: true)
-        }
-
-        do {
-            try reachability.startNotifier()
-        } catch {
-            print("Unable to start notifier")
         }
     }
 }
@@ -85,7 +69,8 @@ extension SportsViewController: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SportsCell", for: indexPath) as! SportsCollectionViewCell
-        if let sportImageStr = sporstArray[indexPath.row].strSportThumb,let sportImageUrl = URL(string: sportImageStr), let sportName = sporstArray[indexPath.row].strSport {
+        let sports = sporstArray[indexPath.row]
+        if let sportImageStr = sports.strSportThumb,let sportImageUrl = URL(string: sportImageStr), let sportName = sports.strSport {
             cell.sportsImageView.kf.indicatorType = .activity
             cell.sportsImageView.kf.setImage(with: sportImageUrl, placeholder: UIImage(named: "sports"))
             cell.sportNameLabel.text = sportName
@@ -133,55 +118,10 @@ extension SportsViewController: UICollectionViewDelegateFlowLayout{
 
 extension SportsViewController{
     func getAllSports(){
-        guard let url = URL(string: "https://www.thesportsdb.com/api/v1/json/2/all_sports.php") else {return}
-       
-        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).response { res in
-            switch res.result{
-            case .failure(_):
-                print("error")
-            case .success(_):
-                guard let data = res.data else {
-                    return
-                }
-                print("data: \(data)")
-                do{
-                    let json = try JSONDecoder().decode(SportsModel.self, from: data)
-                    guard let sports = json.sports else {return}
-                    self.sporstArray = sports
-                }catch{
-                    print("error when get All sporst")
-                }
-                DispatchQueue.main.async {
-                    self.sportsCollectionView.reloadData()
-                }
-            }
+        Networking.shared.getAllSports { sportsModel, error in
+            guard let sports = sportsModel?.sports, error == nil else { return }
+            self.sporstArray = sports
+            self.sportsCollectionView.reloadData()
         }
     }
 }
-
-extension SportsViewController{
-    func displayMessage(titleMessage: String, bodyMessage: String , messageError: Bool){
-       
-        let view = MessageView.viewFromNib(layout: MessageView.Layout.messageView)
-        
-        if messageError{
-            view.configureTheme(.error)
-        }else{
-            view.configureTheme(.success)
-        }
-        view.iconImageView?.isHidden = false
-        view.iconLabel?.isHidden = true
-        view.titleLabel?.text = titleMessage
-        view.bodyLabel?.text = bodyMessage
-        view.titleLabel?.textColor = UIColor.white
-        view.bodyLabel?.textColor = UIColor.white
-        view.button?.isHidden = true
-        
-        var config = SwiftMessages.Config()
-        config.presentationStyle = .bottom
-        SwiftMessages.show(config: config, view: view)
-    }
-}
-
-
-//upcomming https://www.thesportsdb.com/api/v1/json/2/eventsround.php?id=4328&r=38

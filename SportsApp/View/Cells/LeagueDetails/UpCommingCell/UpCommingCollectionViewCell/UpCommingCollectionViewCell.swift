@@ -17,6 +17,7 @@ class UpCommingCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var myView: UIView!
     
     static var idenifier = "UpCommingCollectionViewCell"
+    
     static func nib()-> UINib{
         return UINib(nibName: "UpCommingCollectionViewCell", bundle: nil)
     }
