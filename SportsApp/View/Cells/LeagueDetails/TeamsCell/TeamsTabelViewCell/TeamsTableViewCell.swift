@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-// 1
+// 1 trans to page from cell
 protocol selectedTeamProtocol {
     func onClickTeam(team: Team)
 }
@@ -17,6 +17,7 @@ class TeamsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var teamCollectionView: UICollectionView!
     var teamArray: [Team] = []
+    // 2 trans to page from cell
     var selectedTeamDelagte: selectedTeamProtocol?
     static var identifier = "TeamsTableViewCell"
     static func nib ()->UINib{
@@ -65,6 +66,7 @@ extension TeamsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // 3 trans to page from cell
         selectedTeamDelagte?.onClickTeam(team: teamArray[indexPath.row])
     }
     

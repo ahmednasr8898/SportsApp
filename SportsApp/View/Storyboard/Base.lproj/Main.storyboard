@@ -266,10 +266,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UHr-H4-0Me">
-                                <rect key="frame" x="0.0" y="282" width="414" height="305"/>
+                                <rect key="frame" x="0.0" y="285.5" width="414" height="385.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88q-2K-sdh">
-                                        <rect key="frame" x="18" y="8" width="317" height="44"/>
+                                        <rect key="frame" x="18" y="8" width="317" height="55.5"/>
                                         <attributedString key="attributedText">
                                             <fragment content="English Premier League">
                                                 <attributes>
@@ -280,30 +280,78 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1850" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Xa-f6-Qld">
-                                        <rect key="frame" x="367" y="19.5" width="35" height="21"/>
+                                        <rect key="frame" x="367" y="22.5" width="35" height="26.5"/>
                                         <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="t-shirt" translatesAutoresizingMaskIntoConstraints="NO" id="Sim-5K-Zat">
-                                        <rect key="frame" x="87" y="60" width="240" height="237"/>
+                                        <rect key="frame" x="87" y="71.5" width="240" height="299.5"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Sim-5K-Zat" firstAttribute="centerX" secondItem="UHr-H4-0Me" secondAttribute="centerX" id="A8g-8Q-a5h"/>
                                     <constraint firstItem="2Xa-f6-Qld" firstAttribute="centerY" secondItem="88q-2K-sdh" secondAttribute="centerY" id="B50-hZ-UtX"/>
-                                    <constraint firstItem="Sim-5K-Zat" firstAttribute="top" secondItem="88q-2K-sdh" secondAttribute="bottom" constant="8" id="C3Y-M0-gtZ"/>
                                     <constraint firstAttribute="trailing" secondItem="2Xa-f6-Qld" secondAttribute="trailing" constant="12" id="Ef1-NK-Bd4"/>
-                                    <constraint firstItem="Sim-5K-Zat" firstAttribute="width" secondItem="UHr-H4-0Me" secondAttribute="width" multiplier="0.57971" id="GXi-JJ-702"/>
                                     <constraint firstItem="88q-2K-sdh" firstAttribute="leading" secondItem="UHr-H4-0Me" secondAttribute="leading" constant="18" id="Gvj-Eb-AAs"/>
                                     <constraint firstItem="88q-2K-sdh" firstAttribute="height" secondItem="UHr-H4-0Me" secondAttribute="height" multiplier="0.144262" id="Hfd-SL-bBL"/>
+                                    <constraint firstItem="Sim-5K-Zat" firstAttribute="height" secondItem="UHr-H4-0Me" secondAttribute="height" multiplier="0.777049" id="OaT-o8-cDB"/>
                                     <constraint firstItem="2Xa-f6-Qld" firstAttribute="width" secondItem="88q-2K-sdh" secondAttribute="width" multiplier="0.11041" id="YEN-sk-h41"/>
                                     <constraint firstItem="88q-2K-sdh" firstAttribute="top" secondItem="UHr-H4-0Me" secondAttribute="top" constant="8" id="YM5-bj-JPh"/>
-                                    <constraint firstAttribute="bottom" secondItem="Sim-5K-Zat" secondAttribute="bottom" constant="8" id="cTs-dK-RTo"/>
                                     <constraint firstItem="88q-2K-sdh" firstAttribute="width" secondItem="UHr-H4-0Me" secondAttribute="width" multiplier="0.7657" id="cuu-by-1xN"/>
                                     <constraint firstItem="2Xa-f6-Qld" firstAttribute="height" secondItem="88q-2K-sdh" secondAttribute="height" multiplier="0.477273" id="eoL-zs-c78"/>
-                                    <constraint firstItem="Sim-5K-Zat" firstAttribute="height" secondItem="UHr-H4-0Me" secondAttribute="height" multiplier="0.777049" id="r83-2F-dtg"/>
+                                    <constraint firstItem="Sim-5K-Zat" firstAttribute="centerX" secondItem="UHr-H4-0Me" secondAttribute="centerX" id="l3n-bl-ohZ"/>
+                                    <constraint firstItem="Sim-5K-Zat" firstAttribute="top" secondItem="88q-2K-sdh" secondAttribute="bottom" constant="8" symbolic="YES" id="vkF-0J-Lel"/>
+                                    <constraint firstItem="Sim-5K-Zat" firstAttribute="width" secondItem="UHr-H4-0Me" secondAttribute="width" multiplier="0.57971" id="w0m-vV-lfd"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQ9-aW-py3">
+                                <rect key="frame" x="20" y="771" width="374" height="55"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hB4-o3-QeY">
+                                        <rect key="frame" x="8" y="8" width="358" height="39"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cx4-0E-II4">
+                                                <rect key="frame" x="0.0" y="0.0" width="89.5" height="39"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="youtube-48"/>
+                                                <connections>
+                                                    <action selector="youTubeDidPressed:" destination="XnB-qW-vuY" eventType="touchUpInside" id="37v-Xx-B6Z"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tqs-bE-Dhd">
+                                                <rect key="frame" x="89.5" y="0.0" width="89.5" height="39"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="instagram-48"/>
+                                                <connections>
+                                                    <action selector="instaDidPressed:" destination="XnB-qW-vuY" eventType="touchUpInside" id="uE3-eP-DMc"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guk-JI-cRf">
+                                                <rect key="frame" x="179" y="0.0" width="89.5" height="39"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="facebook-48"/>
+                                                <connections>
+                                                    <action selector="faceBookDidPressed:" destination="XnB-qW-vuY" eventType="touchUpInside" id="eMk-Wz-QbV"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LUn-Bj-GTm">
+                                                <rect key="frame" x="268.5" y="0.0" width="89.5" height="39"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="twitter-48"/>
+                                                <connections>
+                                                    <action selector="twitterDidPressed:" destination="XnB-qW-vuY" eventType="touchUpInside" id="SGq-58-mnV"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.97679078173475198" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="hB4-o3-QeY" firstAttribute="leading" secondItem="jQ9-aW-py3" secondAttribute="leading" constant="8" id="7wT-y6-8wU"/>
+                                    <constraint firstAttribute="bottom" secondItem="hB4-o3-QeY" secondAttribute="bottom" constant="8" id="Axd-BU-wlE"/>
+                                    <constraint firstItem="hB4-o3-QeY" firstAttribute="top" secondItem="jQ9-aW-py3" secondAttribute="top" constant="8" id="EKq-j1-cYA"/>
+                                    <constraint firstAttribute="trailing" secondItem="hB4-o3-QeY" secondAttribute="trailing" constant="8" id="myl-mr-8Zx"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -311,16 +359,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="QRw-oF-v9O" firstAttribute="height" secondItem="JJf-Wk-D7I" secondAttribute="height" multiplier="0.35" id="08z-EQ-rRO"/>
-                            <constraint firstItem="UHr-H4-0Me" firstAttribute="height" secondItem="JJf-Wk-D7I" secondAttribute="height" multiplier="0.340402" id="6Da-Bl-ipZ"/>
+                            <constraint firstItem="jQ9-aW-py3" firstAttribute="height" secondItem="JJf-Wk-D7I" secondAttribute="height" multiplier="0.0613839" id="1Ll-iE-OMh"/>
+                            <constraint firstItem="UHr-H4-0Me" firstAttribute="height" secondItem="JJf-Wk-D7I" secondAttribute="height" multiplier="0.43" id="6Da-Bl-ipZ"/>
                             <constraint firstItem="QRw-oF-v9O" firstAttribute="leading" secondItem="O3u-kj-WtG" secondAttribute="leading" id="6xm-7D-PUD"/>
                             <constraint firstItem="QRw-oF-v9O" firstAttribute="top" secondItem="JJf-Wk-D7I" secondAttribute="top" id="SFj-CQ-E6B"/>
+                            <constraint firstItem="O3u-kj-WtG" firstAttribute="trailing" secondItem="jQ9-aW-py3" secondAttribute="trailing" constant="20" id="UUe-pO-D6G"/>
                             <constraint firstItem="UHr-H4-0Me" firstAttribute="width" secondItem="JJf-Wk-D7I" secondAttribute="width" id="X8V-Xu-eUu"/>
                             <constraint firstAttribute="trailing" secondItem="QRw-oF-v9O" secondAttribute="trailing" id="Xa5-8k-Ged"/>
                             <constraint firstItem="XqH-di-Q1l" firstAttribute="leading" secondItem="60j-J8-ToQ" secondAttribute="leading" id="Xv9-ta-X3e"/>
+                            <constraint firstItem="jQ9-aW-py3" firstAttribute="centerX" secondItem="O3u-kj-WtG" secondAttribute="centerX" id="Yh0-iw-SVC"/>
                             <constraint firstItem="60j-J8-ToQ" firstAttribute="top" secondItem="JwM-aH-Is7" secondAttribute="top" constant="14" id="aXz-J3-o40"/>
-                            <constraint firstItem="UHr-H4-0Me" firstAttribute="top" secondItem="JwM-aH-Is7" secondAttribute="bottom" constant="8.5" id="bbx-r1-3cG"/>
+                            <constraint firstItem="UHr-H4-0Me" firstAttribute="top" secondItem="JwM-aH-Is7" secondAttribute="bottom" constant="12" id="bbx-r1-3cG"/>
                             <constraint firstItem="60j-J8-ToQ" firstAttribute="height" secondItem="QRw-oF-v9O" secondAttribute="height" multiplier="0.140351" id="cbB-NI-JAi"/>
                             <constraint firstItem="XqH-di-Q1l" firstAttribute="trailing" secondItem="60j-J8-ToQ" secondAttribute="trailing" id="cgb-iL-nuJ"/>
+                            <constraint firstItem="jQ9-aW-py3" firstAttribute="leading" secondItem="O3u-kj-WtG" secondAttribute="leading" constant="20" id="csx-wE-T7p"/>
                             <constraint firstItem="UHr-H4-0Me" firstAttribute="leading" secondItem="O3u-kj-WtG" secondAttribute="leading" id="eKu-Bt-hAC"/>
                             <constraint firstItem="JwM-aH-Is7" firstAttribute="width" secondItem="JJf-Wk-D7I" secondAttribute="width" multiplier="0.301932" id="hKr-d7-qoz"/>
                             <constraint firstItem="JwM-aH-Is7" firstAttribute="bottom" secondItem="QRw-oF-v9O" secondAttribute="bottom" constant="-40" id="jib-py-JnI"/>
@@ -329,12 +381,25 @@
                             <constraint firstItem="JwM-aH-Is7" firstAttribute="leading" secondItem="O3u-kj-WtG" secondAttribute="leading" constant="8" id="r0v-a3-Eht"/>
                             <constraint firstItem="JwM-aH-Is7" firstAttribute="height" secondItem="JJf-Wk-D7I" secondAttribute="height" multiplier="0.142857" id="rVA-3z-vgk"/>
                             <constraint firstItem="60j-J8-ToQ" firstAttribute="width" secondItem="QRw-oF-v9O" secondAttribute="width" multiplier="0.5" id="rqx-Hc-lAI"/>
+                            <constraint firstItem="jQ9-aW-py3" firstAttribute="top" secondItem="UHr-H4-0Me" secondAttribute="bottom" constant="100" id="xpz-QD-8dB"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="instaButton" destination="Tqs-bE-Dhd" id="4Jc-Be-XPJ"/>
+                        <outlet property="leagueName" destination="88q-2K-sdh" id="zMI-EO-llH"/>
+                        <outlet property="myViewOne" destination="UHr-H4-0Me" id="UoQ-Qv-7Yl"/>
+                        <outlet property="myViewTwo" destination="jQ9-aW-py3" id="ZVS-Sf-GEQ"/>
+                        <outlet property="stduimTeamImageView" destination="QRw-oF-v9O" id="NGX-Ic-Pbl"/>
+                        <outlet property="studimNameLabel" destination="XqH-di-Q1l" id="Bes-MM-SLF"/>
+                        <outlet property="teamImgaView" destination="JwM-aH-Is7" id="bom-4I-yBF"/>
+                        <outlet property="teamNameLabel" destination="60j-J8-ToQ" id="6Dv-rL-lyf"/>
+                        <outlet property="tshirtImageView" destination="Sim-5K-Zat" id="9Ii-uF-0cQ"/>
+                        <outlet property="yearLabel" destination="2Xa-f6-Qld" id="eS4-hK-R6o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TVB-xN-2jz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4686.9565217391309" y="-573.21428571428567"/>
+            <point key="canvasLocation" x="3008.6956521739135" y="-573.21428571428567"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="bdR-Ne-yXb">
@@ -392,10 +457,14 @@
     </scenes>
     <resources>
         <image name="arsenal" width="512" height="512"/>
+        <image name="facebook-48" width="48" height="48"/>
         <image name="heart.text.square.fill" catalog="system" width="128" height="114"/>
+        <image name="instagram-48" width="48" height="48"/>
         <image name="sportscourt.fill" catalog="system" width="128" height="84"/>
         <image name="st" width="1280" height="720"/>
         <image name="t-shirt" width="700" height="700"/>
+        <image name="twitter-48" width="48" height="48"/>
+        <image name="youtube-48" width="48" height="48"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

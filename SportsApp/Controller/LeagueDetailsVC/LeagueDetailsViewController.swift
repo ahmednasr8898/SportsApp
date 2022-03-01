@@ -62,6 +62,7 @@ extension LeagueDetailsViewController: UITableViewDelegate, UITableViewDataSourc
         case 0:
             
             let teamCell = tableView.dequeueReusableCell(withIdentifier: TeamsTableViewCell.identifier, for: indexPath) as! TeamsTableViewCell
+            // 5 trans to page from cell
             teamCell.selectedTeamDelagte = self
             return teamCell
         case 1:
@@ -146,10 +147,10 @@ extension LeagueDetailsViewController{
     }
 }
 
+// 4 trans to page from cell
 extension LeagueDetailsViewController: selectedTeamProtocol{
     func onClickTeam(team: Team) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController") as! TeamDetailsViewController
-        
         vc.selectedTeam = team
         self.navigationController?.pushViewController(vc, animated: true)
     }

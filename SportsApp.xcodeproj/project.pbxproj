@@ -166,9 +166,9 @@
 		CD56960927CD748800962A29 /* LeagueDetails */ = {
 			isa = PBXGroup;
 			children = (
-				CD56960A27CD7C5100962A29 /* TeamsCell */,
 				CD6CA4C527C80E65009DB401 /* UpCommingCell */,
 				CD56960827CD746B00962A29 /* LatestEventsCell */,
+				CD56960A27CD7C5100962A29 /* TeamsCell */,
 			);
 			path = LeagueDetails;
 			sourceTree = "<group>";
