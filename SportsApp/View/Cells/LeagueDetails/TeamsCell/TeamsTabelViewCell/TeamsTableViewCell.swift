@@ -8,11 +8,16 @@
 import UIKit
 import Kingfisher
 
+// 1
+protocol selectedTeamProtocol {
+    func onClickTeam(team: Team)
+}
+
 class TeamsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var teamCollectionView: UICollectionView!
     var teamArray: [Team] = []
-    
+    var selectedTeamDelagte: selectedTeamProtocol?
     static var identifier = "TeamsTableViewCell"
     static func nib ()->UINib{
         return UINib(nibName: "TeamsTableViewCell", bundle: nil)
@@ -47,12 +52,20 @@ extension TeamsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
             cell.teamNameLabel.text = teamName
             cell.teamImageView.kf.indicatorType = .activity
             cell.teamImageView.kf.setImage(with: teamImageUrl)
+        }else{
+            cell.teamNameLabel.text = "Not Found"
+            cell.teamImageView.image = UIImage(named: "notFound")
         }
+        
         cell.myView.layer.cornerRadius = 50
         cell.myView.layer.borderColor = UIColor.yellow.cgColor
         cell.myView.layer.borderWidth = 3
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedTeamDelagte?.onClickTeam(team: teamArray[indexPath.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -70,10 +83,12 @@ extension TeamsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSour
 
 extension TeamsTableViewCell{
     func getAllTeams(){
-        Networking.shared.getAllTeams { teamModel, error in
-            guard let teams = teamModel?.teams, error == nil else {return}
-            self.teamArray = teams
-            self.teamCollectionView.reloadData()
+        Helper.shared.getLeagueName { leagueName in
+            Networking.shared.getAllTeams(leagueName: leagueName) { teamModel, error in
+                guard let teams = teamModel?.teams, error == nil else {return}
+                self.teamArray = teams
+                self.teamCollectionView.reloadData()
+            }
         }
     }
 }

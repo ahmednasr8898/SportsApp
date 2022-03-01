@@ -61,7 +61,8 @@ extension LeagueDetailsViewController: UITableViewDelegate, UITableViewDataSourc
         switch indexPath.section{
         case 0:
             
-            let teamCell = tableView.dequeueReusableCell(withIdentifier: TeamsTableViewCell.identifier, for: indexPath)
+            let teamCell = tableView.dequeueReusableCell(withIdentifier: TeamsTableViewCell.identifier, for: indexPath) as! TeamsTableViewCell
+            teamCell.selectedTeamDelagte = self
             return teamCell
         case 1:
             
@@ -142,5 +143,14 @@ extension LeagueDetailsViewController{
             self.latestArray = latestEvents
             self.leagueDetailsTableView.reloadData()
         }
+    }
+}
+
+extension LeagueDetailsViewController: selectedTeamProtocol{
+    func onClickTeam(team: Team) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "TeamDetailsViewController") as! TeamDetailsViewController
+        
+        vc.selectedTeam = team
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

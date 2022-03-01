@@ -107,8 +107,9 @@ extension Networking{
 }
 
 extension Networking{
-    func getAllTeams(complition: @escaping (TeamModel?, Error?)-> Void){
-        guard let url = URL(string: "https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?l=English%20Premier%20League") else {return}
+    func getAllTeams(leagueName: String,complition: @escaping (TeamModel?, Error?)-> Void){
+        let teamName = leagueName.replacingOccurrences(of: " ", with: "%20")
+        guard let url = URL(string: "https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?l=\(teamName)") else {return}
        
         AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).response { res in
             switch res.result{

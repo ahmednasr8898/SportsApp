@@ -19,13 +19,7 @@ class LeaguesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabelView()
-        callAllLeagueMethod()
-    }
-   
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        leagueTableView.isSkeletonable = true
-        leagueTableView.showAnimatedGradientSkeleton()
+        self.getAllLeagues(strSport: self.sportName ?? "")
     }
     
     func setupTabelView(){
@@ -33,17 +27,6 @@ class LeaguesViewController: UIViewController {
         leagueTableView.dataSource = self
         leagueTableView.separatorStyle = .none
         leagueTableView.estimatedRowHeight = 120
-    }
-}
-
-extension LeaguesViewController{
-    func callAllLeagueMethod(){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.getAllLeagues(strSport: self.sportName ?? "")
-            self.leagueTableView.stopSkeletonAnimation()
-            self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
-            self.leagueTableView.reloadData()
-        }
     }
 }
 
@@ -89,27 +72,40 @@ extension LeaguesViewController: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let leagueID = leagueArray[indexPath.row].idLeague else {return}
-        self.goToLeagueDetailsVC(leagueID: leagueID)
-        
+        guard let leagueID = leagueArray[indexPath.row].idLeague, let leagueName = leagueArray[indexPath.row].strLeague else {return}
+        self.goToLeagueDetailsVC(leagueID: leagueID, leagueName: leagueName)
     }
 }
 
 extension LeaguesViewController{
-    func goToLeagueDetailsVC(leagueID: String){
+    func goToLeagueDetailsVC(leagueID: String, leagueName: String){
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as! LeagueDetailsViewController
         //move league ID to leagueDetails
         Helper.shared.setLeagueID(leagueID: leagueID)
-        self.present(vc, animated: true, completion: nil)
+        Helper.shared.setLeagueName(leagueName: leagueName)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 extension LeaguesViewController{
     func getAllLeagues(strSport: String){
-        Networking.shared.getAllLeagues(strSport: strSport) { leagueModel, error in
-            guard let leagues = leagueModel?.countrys, error == nil else {return}
-            self.leagueArray = leagues
-            self.leagueTableView.reloadData()
+        leagueTableView.isSkeletonable = true
+        leagueTableView.showAnimatedGradientSkeleton()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            Networking.shared.getAllLeagues(strSport: strSport) { leagueModel, error in
+                guard let leagues = leagueModel?.countrys, error == nil else {
+                    self.leagueTableView.stopSkeletonAnimation()
+                    self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+                    return
+                }
+                self.leagueArray = leagues
+                self.leagueTableView.stopSkeletonAnimation()
+                self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
+                self.leagueTableView.reloadData()
+            }
         }
     }
 }
+
+

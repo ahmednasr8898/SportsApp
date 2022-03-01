@@ -27,6 +27,17 @@ extension Helper{
 }
 
 extension Helper{
+    func setLeagueName(leagueName: String){
+        UserDefaults.standard.set(leagueName, forKey: "LeagueName")
+    }
+    
+    func getLeagueName(complition: @escaping (String) -> Void){
+        guard let leagueName = UserDefaults.standard.object(forKey: "LeagueName") else {return}
+        complition(leagueName as! String)
+    }
+}
+
+extension Helper{
     func displayMessage(titleMessage: String, bodyMessage: String , messageError: Bool){
         let view = MessageView.viewFromNib(layout: MessageView.Layout.messageView)
         

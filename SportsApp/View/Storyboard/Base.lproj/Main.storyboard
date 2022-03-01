@@ -83,7 +83,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1090.7692307692307" y="-572.2748815165877"/>
+            <point key="canvasLocation" x="868" y="-573"/>
         </scene>
         <!--League-->
         <scene sceneID="FEP-sw-342">
@@ -196,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2cR-hU-kno" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1842" y="-573"/>
+            <point key="canvasLocation" x="1543" y="-573"/>
         </scene>
         <!--League Details View Controller-->
         <scene sceneID="dTr-ku-AUk">
@@ -230,13 +230,111 @@
                             <constraint firstItem="p1Q-qJ-RF7" firstAttribute="top" secondItem="3c3-J3-gdM" secondAttribute="top" id="pe3-VO-RSl"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="3aK-1T-oKG"/>
                     <connections>
                         <outlet property="leagueDetailsTableView" destination="p1Q-qJ-RF7" id="zO7-Fi-YOx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f6h-u9-B70" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2568" y="-573"/>
+            <point key="canvasLocation" x="2249" y="-573"/>
+        </scene>
+        <!--Team Details View Controller-->
+        <scene sceneID="s0u-Ww-AB9">
+            <objects>
+                <viewController storyboardIdentifier="TeamDetailsViewController" id="XnB-qW-vuY" customClass="TeamDetailsViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JJf-Wk-D7I">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="st" translatesAutoresizingMaskIntoConstraints="NO" id="QRw-oF-v9O">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="313.5"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arsenal" translatesAutoresizingMaskIntoConstraints="NO" id="JwM-aH-Is7">
+                                <rect key="frame" x="8" y="145.5" width="125" height="128"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arsenal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60j-J8-ToQ">
+                                <rect key="frame" x="133" y="159.5" width="207" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arsnal studim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XqH-di-Q1l">
+                                <rect key="frame" x="133" y="197" width="207" height="19.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <color key="textColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UHr-H4-0Me">
+                                <rect key="frame" x="0.0" y="282" width="414" height="305"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88q-2K-sdh">
+                                        <rect key="frame" x="18" y="8" width="317" height="44"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="English Premier League">
+                                                <attributes>
+                                                    <font key="NSFont" size="25" name="AvenirNext-Bold"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1850" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Xa-f6-Qld">
+                                        <rect key="frame" x="367" y="19.5" width="35" height="21"/>
+                                        <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="t-shirt" translatesAutoresizingMaskIntoConstraints="NO" id="Sim-5K-Zat">
+                                        <rect key="frame" x="87" y="60" width="240" height="237"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Sim-5K-Zat" firstAttribute="centerX" secondItem="UHr-H4-0Me" secondAttribute="centerX" id="A8g-8Q-a5h"/>
+                                    <constraint firstItem="2Xa-f6-Qld" firstAttribute="centerY" secondItem="88q-2K-sdh" secondAttribute="centerY" id="B50-hZ-UtX"/>
+                                    <constraint firstItem="Sim-5K-Zat" firstAttribute="top" secondItem="88q-2K-sdh" secondAttribute="bottom" constant="8" id="C3Y-M0-gtZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="2Xa-f6-Qld" secondAttribute="trailing" constant="12" id="Ef1-NK-Bd4"/>
+                                    <constraint firstItem="Sim-5K-Zat" firstAttribute="width" secondItem="UHr-H4-0Me" secondAttribute="width" multiplier="0.57971" id="GXi-JJ-702"/>
+                                    <constraint firstItem="88q-2K-sdh" firstAttribute="leading" secondItem="UHr-H4-0Me" secondAttribute="leading" constant="18" id="Gvj-Eb-AAs"/>
+                                    <constraint firstItem="88q-2K-sdh" firstAttribute="height" secondItem="UHr-H4-0Me" secondAttribute="height" multiplier="0.144262" id="Hfd-SL-bBL"/>
+                                    <constraint firstItem="2Xa-f6-Qld" firstAttribute="width" secondItem="88q-2K-sdh" secondAttribute="width" multiplier="0.11041" id="YEN-sk-h41"/>
+                                    <constraint firstItem="88q-2K-sdh" firstAttribute="top" secondItem="UHr-H4-0Me" secondAttribute="top" constant="8" id="YM5-bj-JPh"/>
+                                    <constraint firstAttribute="bottom" secondItem="Sim-5K-Zat" secondAttribute="bottom" constant="8" id="cTs-dK-RTo"/>
+                                    <constraint firstItem="88q-2K-sdh" firstAttribute="width" secondItem="UHr-H4-0Me" secondAttribute="width" multiplier="0.7657" id="cuu-by-1xN"/>
+                                    <constraint firstItem="2Xa-f6-Qld" firstAttribute="height" secondItem="88q-2K-sdh" secondAttribute="height" multiplier="0.477273" id="eoL-zs-c78"/>
+                                    <constraint firstItem="Sim-5K-Zat" firstAttribute="height" secondItem="UHr-H4-0Me" secondAttribute="height" multiplier="0.777049" id="r83-2F-dtg"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="O3u-kj-WtG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="QRw-oF-v9O" firstAttribute="height" secondItem="JJf-Wk-D7I" secondAttribute="height" multiplier="0.35" id="08z-EQ-rRO"/>
+                            <constraint firstItem="UHr-H4-0Me" firstAttribute="height" secondItem="JJf-Wk-D7I" secondAttribute="height" multiplier="0.340402" id="6Da-Bl-ipZ"/>
+                            <constraint firstItem="QRw-oF-v9O" firstAttribute="leading" secondItem="O3u-kj-WtG" secondAttribute="leading" id="6xm-7D-PUD"/>
+                            <constraint firstItem="QRw-oF-v9O" firstAttribute="top" secondItem="JJf-Wk-D7I" secondAttribute="top" id="SFj-CQ-E6B"/>
+                            <constraint firstItem="UHr-H4-0Me" firstAttribute="width" secondItem="JJf-Wk-D7I" secondAttribute="width" id="X8V-Xu-eUu"/>
+                            <constraint firstAttribute="trailing" secondItem="QRw-oF-v9O" secondAttribute="trailing" id="Xa5-8k-Ged"/>
+                            <constraint firstItem="XqH-di-Q1l" firstAttribute="leading" secondItem="60j-J8-ToQ" secondAttribute="leading" id="Xv9-ta-X3e"/>
+                            <constraint firstItem="60j-J8-ToQ" firstAttribute="top" secondItem="JwM-aH-Is7" secondAttribute="top" constant="14" id="aXz-J3-o40"/>
+                            <constraint firstItem="UHr-H4-0Me" firstAttribute="top" secondItem="JwM-aH-Is7" secondAttribute="bottom" constant="8.5" id="bbx-r1-3cG"/>
+                            <constraint firstItem="60j-J8-ToQ" firstAttribute="height" secondItem="QRw-oF-v9O" secondAttribute="height" multiplier="0.140351" id="cbB-NI-JAi"/>
+                            <constraint firstItem="XqH-di-Q1l" firstAttribute="trailing" secondItem="60j-J8-ToQ" secondAttribute="trailing" id="cgb-iL-nuJ"/>
+                            <constraint firstItem="UHr-H4-0Me" firstAttribute="leading" secondItem="O3u-kj-WtG" secondAttribute="leading" id="eKu-Bt-hAC"/>
+                            <constraint firstItem="JwM-aH-Is7" firstAttribute="width" secondItem="JJf-Wk-D7I" secondAttribute="width" multiplier="0.301932" id="hKr-d7-qoz"/>
+                            <constraint firstItem="JwM-aH-Is7" firstAttribute="bottom" secondItem="QRw-oF-v9O" secondAttribute="bottom" constant="-40" id="jib-py-JnI"/>
+                            <constraint firstItem="XqH-di-Q1l" firstAttribute="top" secondItem="60j-J8-ToQ" secondAttribute="bottom" constant="-6.5" id="pYm-ax-1F3"/>
+                            <constraint firstItem="60j-J8-ToQ" firstAttribute="leading" secondItem="JwM-aH-Is7" secondAttribute="trailing" id="qkP-hC-69d"/>
+                            <constraint firstItem="JwM-aH-Is7" firstAttribute="leading" secondItem="O3u-kj-WtG" secondAttribute="leading" constant="8" id="r0v-a3-Eht"/>
+                            <constraint firstItem="JwM-aH-Is7" firstAttribute="height" secondItem="JJf-Wk-D7I" secondAttribute="height" multiplier="0.142857" id="rVA-3z-vgk"/>
+                            <constraint firstItem="60j-J8-ToQ" firstAttribute="width" secondItem="QRw-oF-v9O" secondAttribute="width" multiplier="0.5" id="rqx-Hc-lAI"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TVB-xN-2jz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4686.9565217391309" y="-573.21428571428567"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="bdR-Ne-yXb">
@@ -293,8 +391,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arsenal" width="512" height="512"/>
         <image name="heart.text.square.fill" catalog="system" width="128" height="114"/>
         <image name="sportscourt.fill" catalog="system" width="128" height="84"/>
+        <image name="st" width="1280" height="720"/>
+        <image name="t-shirt" width="700" height="700"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
