@@ -9,6 +9,7 @@ import UIKit
 import Alamofire
 import SkeletonView
 import Kingfisher
+import CoreData
 
 class LeaguesViewController: UIViewController {
 
@@ -16,10 +17,18 @@ class LeaguesViewController: UIViewController {
     var sportName: String?
     var leagueArray: [Country] = []
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var leagues = [LeagueDataModel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabelView()
         self.getAllLeagues(strSport: self.sportName ?? "")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getAllFavoriteLeague()
     }
     
     func setupTabelView(){
@@ -73,17 +82,44 @@ extension LeaguesViewController: UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let leagueID = leagueArray[indexPath.row].idLeague, let leagueName = leagueArray[indexPath.row].strLeague else {return}
-        self.goToLeagueDetailsVC(leagueID: leagueID, leagueName: leagueName)
+        self.goToLeagueDetailsVC(selectedLeague: leagueArray[indexPath.row], leagueID: leagueID, leagueName: leagueName)
     }
 }
 
 extension LeaguesViewController{
-    func goToLeagueDetailsVC(leagueID: String, leagueName: String){
+    func goToLeagueDetailsVC(selectedLeague: Country ,leagueID: String, leagueName: String){
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as! LeagueDetailsViewController
         //move league ID to leagueDetails
         Helper.shared.setLeagueID(leagueID: leagueID)
         Helper.shared.setLeagueName(leagueName: leagueName)
+        vc.selectedLeague = selectedLeague
+        //check is league found in favorite or not
+        self.checkIsLeagueFoundInFavoriteOrNot(leagueID: leagueID) { isFoundInFavorite in
+            if isFoundInFavorite{
+                vc.leagueIsFoundInFavorite = true
+            }else{
+                vc.leagueIsFoundInFavorite = false
+            }
+        }
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension LeaguesViewController{
+    func checkIsLeagueFoundInFavoriteOrNot(leagueID: String, complition: @escaping (Bool)->Void){
+        for league in leagues{
+            if league.idLeague == leagueID{
+                complition(true)
+            }
+        }
+    }
+    
+    func getAllFavoriteLeague(){
+        do{
+            self.leagues = try self.context.fetch(LeagueDataModel.fetchRequest())
+        }catch{
+            print("Error in getAllFavoriteLeague function: ", error.localizedDescription)
+        }
     }
 }
 

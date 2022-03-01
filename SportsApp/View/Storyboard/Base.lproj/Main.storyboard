@@ -196,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2cR-hU-kno" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1543" y="-573"/>
+            <point key="canvasLocation" x="1528" y="-573"/>
         </scene>
         <!--League Details View Controller-->
         <scene sceneID="dTr-ku-AUk">
@@ -207,7 +207,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="p1Q-qJ-RF7">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LeagueDetailsCell" rowHeight="154" id="cxy-mH-Lff">
@@ -230,14 +230,21 @@
                             <constraint firstItem="p1Q-qJ-RF7" firstAttribute="top" secondItem="3c3-J3-gdM" secondAttribute="top" id="pe3-VO-RSl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="3aK-1T-oKG"/>
+                    <navigationItem key="navigationItem" id="3aK-1T-oKG">
+                        <barButtonItem key="rightBarButtonItem" image="star" catalog="system" id="Say-Dh-mif">
+                            <connections>
+                                <action selector="didPressedOnFavBtn:" destination="Mpt-6J-wyP" id="EfI-WT-BOA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="favoriteBtn" destination="Say-Dh-mif" id="92m-wD-E18"/>
                         <outlet property="leagueDetailsTableView" destination="p1Q-qJ-RF7" id="zO7-Fi-YOx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f6h-u9-B70" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2249" y="-573"/>
+            <point key="canvasLocation" x="2949" y="-573"/>
         </scene>
         <!--Team Details View Controller-->
         <scene sceneID="s0u-Ww-AB9">
@@ -399,23 +406,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TVB-xN-2jz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3008.6956521739135" y="-573.21428571428567"/>
-        </scene>
-        <!--Item 2-->
-        <scene sceneID="bdR-Ne-yXb">
-            <objects>
-                <viewController id="hfQ-hD-CfS" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="R0j-81-ADo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="17s-38-oEP"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="b74-xS-Ae3"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="afC-Lr-Lsw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="162" y="132"/>
+            <point key="canvasLocation" x="3664" y="-573"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="sRa-hV-ATi">
@@ -425,10 +416,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="linkColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="HFr-v9-Wz2" kind="relationship" relationship="viewControllers" id="Euh-Aq-E3n"/>
-                        <segue destination="hfQ-hD-CfS" kind="relationship" relationship="viewControllers" id="eqv-v8-YC5"/>
+                        <segue destination="e5j-kw-dUr" kind="relationship" relationship="viewControllers" id="6DG-9E-L5N"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VcH-Og-ss2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -454,17 +446,172 @@
             </objects>
             <point key="canvasLocation" x="161.53846153846152" y="-572.2748815165877"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="EXW-Fs-TFa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="e0y-2E-oJz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Ha-SX-gF8">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Mpt-6J-wyP" kind="relationship" relationship="rootViewController" id="aog-wV-S2N"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="APh-d2-03g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2247.826086956522" y="-573.21428571428567"/>
+        </scene>
+        <!--League-->
+        <scene sceneID="wed-9W-R3d">
+            <objects>
+                <viewController storyboardIdentifier="FavoritesViewController" id="0vb-za-Hp6" customClass="FavoritesViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mHZ-Rs-TYC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="feC-m3-4sf">
+                                <rect key="frame" x="0.0" y="8" width="414" height="888"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FavoriteCell" rowHeight="144" id="82R-ow-5gW" customClass="FavoritesTableViewCell" customModule="SportsApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="144"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="82R-ow-5gW" id="wG2-VH-SL6">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="144"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29O-8m-J1c">
+                                                    <rect key="frame" x="8" y="8" width="398" height="128"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4Y-K8-Z8I">
+                                                            <rect key="frame" x="292" y="42.5" width="94" height="43"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="plain">
+                                                                <attributedString key="attributedTitle"/>
+                                                            </buttonConfiguration>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </button>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Arg-YA-0sp">
+                                                            <rect key="frame" x="12" y="22.5" width="83" height="83"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="Arg-YA-0sp" secondAttribute="height" multiplier="1:1" id="RVR-W9-vCF"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="this label for show name of league" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAi-do-HiV">
+                                                            <rect key="frame" x="115" y="19" width="170" height="90"/>
+                                                            <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="Arg-YA-0sp" firstAttribute="leading" secondItem="29O-8m-J1c" secondAttribute="leading" constant="12" id="1c2-Mi-2ix"/>
+                                                        <constraint firstItem="EAi-do-HiV" firstAttribute="centerY" secondItem="Arg-YA-0sp" secondAttribute="centerY" id="200-Al-p6l"/>
+                                                        <constraint firstItem="Arg-YA-0sp" firstAttribute="width" secondItem="29O-8m-J1c" secondAttribute="width" multiplier="0.208543" id="3pL-Qu-j57"/>
+                                                        <constraint firstItem="EAi-do-HiV" firstAttribute="width" secondItem="29O-8m-J1c" secondAttribute="width" multiplier="0.396985" constant="12" id="8Xt-Fj-UqQ"/>
+                                                        <constraint firstItem="e4Y-K8-Z8I" firstAttribute="width" secondItem="29O-8m-J1c" secondAttribute="width" multiplier="0.20603" constant="12" id="BSD-XO-tJO"/>
+                                                        <constraint firstItem="e4Y-K8-Z8I" firstAttribute="leading" secondItem="EAi-do-HiV" secondAttribute="trailing" constant="7" id="Hru-Fv-cuB"/>
+                                                        <constraint firstItem="Arg-YA-0sp" firstAttribute="centerY" secondItem="29O-8m-J1c" secondAttribute="centerY" id="IRs-Yh-Lk5"/>
+                                                        <constraint firstItem="EAi-do-HiV" firstAttribute="height" secondItem="29O-8m-J1c" secondAttribute="height" multiplier="0.7" id="c3g-Jb-03S"/>
+                                                        <constraint firstAttribute="trailing" secondItem="e4Y-K8-Z8I" secondAttribute="trailing" constant="12" id="fcB-4q-3cl"/>
+                                                        <constraint firstItem="e4Y-K8-Z8I" firstAttribute="centerY" secondItem="Arg-YA-0sp" secondAttribute="centerY" id="lRd-pW-1dD"/>
+                                                        <constraint firstItem="e4Y-K8-Z8I" firstAttribute="height" secondItem="29O-8m-J1c" secondAttribute="height" multiplier="0.335938" id="tqV-rx-Ysv"/>
+                                                        <constraint firstItem="EAi-do-HiV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Arg-YA-0sp" secondAttribute="trailing" constant="8" symbolic="YES" id="xFx-q9-Qfk"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="29O-8m-J1c" secondAttribute="trailing" constant="8" id="K7k-EJ-ujD"/>
+                                                <constraint firstAttribute="bottom" secondItem="29O-8m-J1c" secondAttribute="bottom" constant="8" id="R24-c8-Och"/>
+                                                <constraint firstItem="29O-8m-J1c" firstAttribute="top" secondItem="wG2-VH-SL6" secondAttribute="top" constant="8" id="ndv-MS-1VM"/>
+                                                <constraint firstItem="29O-8m-J1c" firstAttribute="leading" secondItem="wG2-VH-SL6" secondAttribute="leading" constant="8" id="qKz-l4-ggc"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.93333333330000001" green="0.94901960780000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="leagueImageView" destination="Arg-YA-0sp" id="v2A-6E-JU8"/>
+                                            <outlet property="leagueNameLabel" destination="EAi-do-HiV" id="81u-f5-Uff"/>
+                                            <outlet property="myView" destination="29O-8m-J1c" id="tWv-dH-dhY"/>
+                                            <outlet property="youTubeButton" destination="e4Y-K8-Z8I" id="aTW-mP-X7Q"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7PB-l0-MRQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="feC-m3-4sf" firstAttribute="leading" secondItem="7PB-l0-MRQ" secondAttribute="leading" id="3sC-L2-jV8"/>
+                            <constraint firstAttribute="bottom" secondItem="feC-m3-4sf" secondAttribute="bottom" id="ACH-vF-lDB"/>
+                            <constraint firstItem="feC-m3-4sf" firstAttribute="top" secondItem="mHZ-Rs-TYC" secondAttribute="top" constant="8" id="Xd9-id-90R"/>
+                            <constraint firstItem="feC-m3-4sf" firstAttribute="trailing" secondItem="7PB-l0-MRQ" secondAttribute="trailing" id="cEz-O9-snv"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="League" id="6mT-Ld-JZA"/>
+                    <connections>
+                        <outlet property="favoritesTabelView" destination="feC-m3-4sf" id="iNr-j0-pfy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fR5-Gn-bmB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="784" y="84"/>
+        </scene>
+        <!--favorite-->
+        <scene sceneID="WO2-3P-OrW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="e5j-kw-dUr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="favorite" image="heart.circle.fill" catalog="system" id="W2k-KJ-7C5"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LzS-ot-Oc4">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0vb-za-Hp6" kind="relationship" relationship="rootViewController" id="9wN-Kn-PdV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QQy-gL-WCd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="60.869565217391312" y="84.375"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arsenal" width="512" height="512"/>
         <image name="facebook-48" width="48" height="48"/>
+        <image name="heart.circle.fill" catalog="system" width="128" height="121"/>
         <image name="heart.text.square.fill" catalog="system" width="128" height="114"/>
         <image name="instagram-48" width="48" height="48"/>
         <image name="sportscourt.fill" catalog="system" width="128" height="84"/>
         <image name="st" width="1280" height="720"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="t-shirt" width="700" height="700"/>
         <image name="twitter-48" width="48" height="48"/>
         <image name="youtube-48" width="48" height="48"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
