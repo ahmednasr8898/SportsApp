@@ -105,3 +105,26 @@ extension Networking{
         }
     }
 }
+
+extension Networking{
+    func getAllTeams(complition: @escaping (TeamModel?, Error?)-> Void){
+        guard let url = URL(string: "https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?l=English%20Premier%20League") else {return}
+       
+        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).response { res in
+            switch res.result{
+            case .failure(let error):
+                complition(nil, error)
+            case .success(_):
+                guard let data = res.data else {
+                    return
+                }
+                do{
+                    let json = try JSONDecoder().decode(TeamModel.self, from: data)
+                    complition(json, nil)
+                }catch let error{
+                    complition(nil, error)
+                }
+            }
+        }
+    }
+}

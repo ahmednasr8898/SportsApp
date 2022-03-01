@@ -29,12 +29,14 @@ class LeagueDetailsViewController: UIViewController {
         leagueDetailsTableView.register(UpCommingTableViewCell.nib(), forCellReuseIdentifier: UpCommingTableViewCell.identifier)
         
         leagueDetailsTableView.register(LatestEventsTableViewCell.nib(), forCellReuseIdentifier: LatestEventsTableViewCell.identifier)
+        
+        leagueDetailsTableView.register(TeamsTableViewCell.nib(), forCellReuseIdentifier: TeamsTableViewCell.identifier)
     }
 }
 
 extension LeagueDetailsViewController: UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,10 +44,13 @@ extension LeagueDetailsViewController: UITableViewDelegate, UITableViewDataSourc
         
         switch section {
         case 0:
-            //array of upcoming
+            //Teams
+            row = 1
+        case 1:
+            //Upcoming Events
             row = 1
         default:
-            //array of teams
+            //Latest Events
             row = latestArray.count
         }
         return row
@@ -55,16 +60,22 @@ extension LeagueDetailsViewController: UITableViewDelegate, UITableViewDataSourc
         
         switch indexPath.section{
         case 0:
+            
+            let teamCell = tableView.dequeueReusableCell(withIdentifier: TeamsTableViewCell.identifier, for: indexPath)
+            return teamCell
+        case 1:
+            
             let  upCommingCell = tableView.dequeueReusableCell(withIdentifier: UpCommingTableViewCell.identifier, for: indexPath) as! UpCommingTableViewCell
             return upCommingCell
-        default:
             
+            
+        default:
             let latestCell =  tableView.dequeueReusableCell(withIdentifier: LatestEventsTableViewCell.identifier, for: indexPath) as! LatestEventsTableViewCell
             
             let latest = latestArray[indexPath.row]
             if let homeTeam = latest.strHomeTeam, let awayTeam = latest.strAwayTeam, let matchPosterStr = latest.strThumb,
                let matchPosterUrl = URL(string: matchPosterStr), let matchDate = latest.dateEvent, let matchTime = latest.strTime, let homeScore = latest.intHomeScore, let awayScore = latest.intAwayScore {
-            
+                
                 latestCell.homeTeamLabel.text = homeTeam
                 latestCell.awayTeamLabel.text = awayTeam
                 latestCell.matchPosterImageView.kf.indicatorType = .activity
@@ -101,6 +112,8 @@ extension LeagueDetailsViewController: UITableViewDelegate, UITableViewDataSourc
         var title = ""
         switch section {
         case 0:
+            title  = "Teams"
+        case 1:
             title  = "UpComming"
         default:
             title  = "Last Event"
@@ -112,6 +125,8 @@ extension LeagueDetailsViewController: UITableViewDelegate, UITableViewDataSourc
         var height: CGFloat = 0
         switch indexPath.section {
         case 0:
+            height = 140
+        case 1:
             height = 260
         default:
             height = 160

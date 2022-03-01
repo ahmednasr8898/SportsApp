@@ -14,6 +14,11 @@
 		CD5695F927CD5B1A00962A29 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5695F827CD5B1A00962A29 /* Events.swift */; };
 		CD5695FD27CD61C500962A29 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5695FC27CD61C500962A29 /* Helper.swift */; };
 		CD56960127CD658200962A29 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD56960027CD658200962A29 /* Networking.swift */; };
+		CD56960E27CD7C8300962A29 /* TeamsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD56960C27CD7C8300962A29 /* TeamsTableViewCell.swift */; };
+		CD56960F27CD7C8300962A29 /* TeamsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD56960D27CD7C8300962A29 /* TeamsTableViewCell.xib */; };
+		CD56961327CD7CFA00962A29 /* TeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD56961127CD7CFA00962A29 /* TeamCollectionViewCell.swift */; };
+		CD56961427CD7CFA00962A29 /* TeamCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD56961227CD7CFA00962A29 /* TeamCollectionViewCell.xib */; };
+		CD56961627CD96DF00962A29 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD56961527CD96DF00962A29 /* TeamModel.swift */; };
 		CD61286B27C6F4D700C1DC33 /* LeagueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD61286A27C6F4D700C1DC33 /* LeagueModel.swift */; };
 		CD6CA4C327C801DF009DB401 /* LeagueDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6CA4C227C801DF009DB401 /* LeagueDetailsViewController.swift */; };
 		CD6CA4C827C80E99009DB401 /* UpCommingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6CA4C627C80E99009DB401 /* UpCommingTableViewCell.swift */; };
@@ -43,6 +48,11 @@
 		CD5695F827CD5B1A00962A29 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		CD5695FC27CD61C500962A29 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		CD56960027CD658200962A29 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		CD56960C27CD7C8300962A29 /* TeamsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsTableViewCell.swift; sourceTree = "<group>"; };
+		CD56960D27CD7C8300962A29 /* TeamsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamsTableViewCell.xib; sourceTree = "<group>"; };
+		CD56961127CD7CFA00962A29 /* TeamCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCollectionViewCell.swift; sourceTree = "<group>"; };
+		CD56961227CD7CFA00962A29 /* TeamCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamCollectionViewCell.xib; sourceTree = "<group>"; };
+		CD56961527CD96DF00962A29 /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
 		CD61286A27C6F4D700C1DC33 /* LeagueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueModel.swift; sourceTree = "<group>"; };
 		CD6CA4C227C801DF009DB401 /* LeagueDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueDetailsViewController.swift; sourceTree = "<group>"; };
 		CD6CA4C627C80E99009DB401 /* UpCommingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpCommingTableViewCell.swift; sourceTree = "<group>"; };
@@ -154,10 +164,38 @@
 		CD56960927CD748800962A29 /* LeagueDetails */ = {
 			isa = PBXGroup;
 			children = (
+				CD56960A27CD7C5100962A29 /* TeamsCell */,
 				CD6CA4C527C80E65009DB401 /* UpCommingCell */,
 				CD56960827CD746B00962A29 /* LatestEventsCell */,
 			);
 			path = LeagueDetails;
+			sourceTree = "<group>";
+		};
+		CD56960A27CD7C5100962A29 /* TeamsCell */ = {
+			isa = PBXGroup;
+			children = (
+				CD56961027CD7CD700962A29 /* TeamsCollectionViewCell */,
+				CD56960B27CD7C6200962A29 /* TeamsTabelViewCell */,
+			);
+			path = TeamsCell;
+			sourceTree = "<group>";
+		};
+		CD56960B27CD7C6200962A29 /* TeamsTabelViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CD56960C27CD7C8300962A29 /* TeamsTableViewCell.swift */,
+				CD56960D27CD7C8300962A29 /* TeamsTableViewCell.xib */,
+			);
+			path = TeamsTabelViewCell;
+			sourceTree = "<group>";
+		};
+		CD56961027CD7CD700962A29 /* TeamsCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				CD56961127CD7CFA00962A29 /* TeamCollectionViewCell.swift */,
+				CD56961227CD7CFA00962A29 /* TeamCollectionViewCell.xib */,
+			);
+			path = TeamsCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		CD6CA4C127C801AF009DB401 /* LeagueDetailsVC */ = {
@@ -235,6 +273,7 @@
 				CDBC2BD027C8484F00AFCBD0 /* UpCommingModel.swift */,
 				CD5695F627CD5AB500962A29 /* LatestEventsModel.swift */,
 				CD5695F827CD5B1A00962A29 /* Events.swift */,
+				CD56961527CD96DF00962A29 /* TeamModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -355,8 +394,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD6CA4D027C8146C009DB401 /* UpCommingCollectionViewCell.xib in Resources */,
+				CD56961427CD7CFA00962A29 /* TeamCollectionViewCell.xib in Resources */,
 				CD9CE81D27C541750027D625 /* LaunchScreen.storyboard in Resources */,
 				CD6CA4C927C80E99009DB401 /* UpCommingTableViewCell.xib in Resources */,
+				CD56960F27CD7C8300962A29 /* TeamsTableViewCell.xib in Resources */,
 				CD9CE81A27C541750027D625 /* Assets.xcassets in Resources */,
 				CD9CE81827C541730027D625 /* Main.storyboard in Resources */,
 				CD447B4327CC349E00CBA649 /* LatestEventsTableViewCell.xib in Resources */,
@@ -415,8 +456,11 @@
 			files = (
 				CD61286B27C6F4D700C1DC33 /* LeagueModel.swift in Sources */,
 				CD9DAF6627C598A7003D7133 /* SportsModel.swift in Sources */,
+				CD56960E27CD7C8300962A29 /* TeamsTableViewCell.swift in Sources */,
 				CD56960127CD658200962A29 /* Networking.swift in Sources */,
+				CD56961327CD7CFA00962A29 /* TeamCollectionViewCell.swift in Sources */,
 				CD9CE81527C541730027D625 /* SportsViewController.swift in Sources */,
+				CD56961627CD96DF00962A29 /* TeamModel.swift in Sources */,
 				CD5695F727CD5AB500962A29 /* LatestEventsModel.swift in Sources */,
 				CD9CE81127C541730027D625 /* AppDelegate.swift in Sources */,
 				CD9CE81327C541730027D625 /* SceneDelegate.swift in Sources */,
