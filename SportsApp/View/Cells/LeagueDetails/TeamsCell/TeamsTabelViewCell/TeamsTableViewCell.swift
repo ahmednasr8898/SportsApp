@@ -30,7 +30,7 @@ class TeamsTableViewCell: UITableViewCell {
         setupCollectionView()
         self.getAllTeams()
     }
-    
+
     func setupCollectionView(){
         teamCollectionView.register(TeamCollectionViewCell.nib(), forCellWithReuseIdentifier: TeamCollectionViewCell.identifier)
         teamCollectionView.delegate = self
@@ -87,7 +87,10 @@ extension TeamsTableViewCell{
     func getAllTeams(){
         Helper.shared.getLeagueName { leagueName in
             Networking.shared.getAllTeams(leagueName: leagueName) { teamModel, error in
-                guard let teams = teamModel?.teams, error == nil else {return}
+                guard let teams = teamModel?.teams, error == nil else {
+                    print("No getAllTeams")
+                    return
+                }
                 self.teamArray = teams
                 self.teamCollectionView.reloadData()
             }

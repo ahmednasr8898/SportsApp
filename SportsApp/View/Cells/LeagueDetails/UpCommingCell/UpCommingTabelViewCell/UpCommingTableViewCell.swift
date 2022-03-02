@@ -12,6 +12,7 @@ class UpCommingTableViewCell: UITableViewCell {
    
     @IBOutlet weak var upCommingCollectionView: UICollectionView!
     var upCommingEventArray: [Event] = []
+    var notFoundImage = UIImageView()
     
     static var identifier = "UpCommingTableViewCell"
     static func nib ()->UINib{
@@ -22,9 +23,25 @@ class UpCommingTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         setUpCollectionView()
+        createNotFoundImage()
         Helper.shared.getLeagueID { leagueID in
             self.getAllUpCommingEvents(leagueID: leagueID)
         }
+    }
+    
+    func createNotFoundImage(){
+        let image = UIImage(named: "404")
+        notFoundImage = UIImageView(image: image!)
+        notFoundImage.frame = CGRect(x: 0, y: 0, width: self.contentView.frame.width, height:  self.contentView.frame.height)
+        notFoundImage.center = self.contentView.center
+        self.contentView.layer.cornerRadius = 30
+        notFoundImage.layer.cornerRadius = 30
+        notFoundImage.layer.borderColor = UIColor.black.cgColor
+        notFoundImage.layer.borderWidth = 1
+        notFoundImage.layer.shadowColor = UIColor.gray.cgColor
+        notFoundImage.layer.shadowOffset = CGSize(width: 4,height: 4)
+        notFoundImage.layer.shadowRadius = 5
+        notFoundImage.layer.shadowOpacity = 0.6
     }
     
     func setUpCollectionView(){
@@ -67,7 +84,6 @@ extension UpCommingTableViewCell: UICollectionViewDelegate, UICollectionViewData
         cell.myView.layer.shadowOffset = CGSize(width: 4,height: 4)
         cell.myView.layer.shadowRadius = 5
         cell.myView.layer.shadowOpacity = 0.6
-        
         return cell
     }
     
@@ -79,7 +95,15 @@ extension UpCommingTableViewCell: UICollectionViewDelegate, UICollectionViewData
 extension UpCommingTableViewCell{
     func getAllUpCommingEvents(leagueID: String){
         Networking.shared.getAllUpCommingEvents(leagueID: leagueID) { upCommingModel, error in
-            guard let upComming = upCommingModel?.events, error == nil else {return}
+            guard let upComming = upCommingModel?.events, error == nil else {
+                self.contentView.addSubview(self.notFoundImage)
+                self.upCommingCollectionView.isHidden = true
+                self.notFoundImage.isHidden = false
+                print("No getAllUpCommingEvents")
+                return
+            }
+            self.upCommingCollectionView.isHidden = false
+            self.notFoundImage.isHidden = true
             self.upCommingEventArray = upComming
             self.upCommingCollectionView.reloadData()
         }

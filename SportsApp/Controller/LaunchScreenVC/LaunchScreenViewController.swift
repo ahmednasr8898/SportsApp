@@ -14,7 +14,7 @@ class LaunchScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mylabel.text = ""
-        let title = "Welcome"
+        let title = "Sports App"
         var charIndex = 0.0
         
         for letter in title{

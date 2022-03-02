@@ -22,3 +22,23 @@ extension UIViewController{
         self.present(alert, animated: true, completion: nil)
     }
 }
+
+extension UIViewController{
+    func showToastMessege(message : String) {
+        
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2-100, y: self.view.frame.size.height-100, width: 200, height: 40))
+        toastLabel.backgroundColor = UIColor.black
+        toastLabel.textColor = UIColor.white
+        toastLabel.font = UIFont(name: "HelveticaNeue-UltraLight", size: 20)
+        toastLabel.textAlignment = .center;
+        toastLabel.text = message
+        toastLabel.layer.cornerRadius = 8;
+        toastLabel.clipsToBounds  =  true
+        self.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 5.0, delay: 0.5, options: .curveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
+    }
+}

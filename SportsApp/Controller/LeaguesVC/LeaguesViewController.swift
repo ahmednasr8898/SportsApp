@@ -4,7 +4,6 @@
 //
 //  Created by Nasr on 23/02/2022.
 //
-
 import UIKit
 import Alamofire
 import SkeletonView
@@ -16,12 +15,13 @@ class LeaguesViewController: UIViewController {
     @IBOutlet weak var leagueTableView: UITableView!
     var sportName: String?
     var leagueArray: [Country] = []
-    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var leagues = [LeagueDataModel]()
+    var notFoundImage = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createNotFoundImage()
         setupTabelView()
         self.getAllLeagues(strSport: self.sportName ?? "")
     }
@@ -31,58 +31,11 @@ class LeaguesViewController: UIViewController {
         getAllFavoriteLeague()
     }
     
-    func setupTabelView(){
-        leagueTableView.delegate = self
-        leagueTableView.dataSource = self
-        leagueTableView.separatorStyle = .none
-        leagueTableView.estimatedRowHeight = 120
-    }
-}
-
-extension LeaguesViewController: SkeletonTableViewDataSource{
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return leagueArray.count
-    }
-    
-    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return LeagueTableViewCell.identifier
-    }
-   
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: LeagueTableViewCell.identifier, for: indexPath) as! LeagueTableViewCell
-      
-        if !leagueArray.isEmpty, let leagueName = leagueArray[indexPath.row].strLeague, let leagueImageStr = leagueArray[indexPath.row].strBadge, let leagueImageUrl = URL(string: leagueImageStr) {
-            
-            cell.leagueNameLabel.text = leagueName
-            cell.leagueImageView.kf.indicatorType = .activity
-            cell.leagueImageView.kf.setImage(with: leagueImageUrl)
-            cell.youtubeButton.setImage(UIImage(named: "youtube"), for: .normal)
-            cell.containerView.backgroundColor = UIColor.white
-            cell.containerView.layer.cornerRadius = 20
-            cell.containerView.layer.shadowColor = UIColor.gray.cgColor
-            cell.containerView.layer.shadowOffset = CGSize(width: 4,height: 4)
-            cell.containerView.layer.shadowRadius = 5
-            cell.containerView.layer.shadowOpacity = 0.3
-            
-            cell.youtubeButton.addAction(UIAction(handler: { _ in
-                if let youTubeStr = self.leagueArray[indexPath.row].strYoutube{
-                    UIApplication.shared.open(URL(string: "https://\(youTubeStr)")! as URL, options: [:], completionHandler: nil)
-                }
-            }), for: .touchUpInside)
-        }
-        return cell
-    }
-}
-
-extension LeaguesViewController: UITableViewDelegate{
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let leagueID = leagueArray[indexPath.row].idLeague, let leagueName = leagueArray[indexPath.row].strLeague else {return}
-        self.goToLeagueDetailsVC(selectedLeague: leagueArray[indexPath.row], leagueID: leagueID, leagueName: leagueName)
+    func createNotFoundImage(){
+        let image = UIImage(named: "resultnotfound")
+        notFoundImage = UIImageView(image: image!)
+        notFoundImage.center = self.view.center
+        notFoundImage.frame = CGRect(x: self.view.frame.origin.x , y: 300, width: self.view.frame.width * 0.9, height: self.view.frame.width * 0.8)
     }
 }
 
@@ -131,10 +84,16 @@ extension LeaguesViewController{
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             Networking.shared.getAllLeagues(strSport: strSport) { leagueModel, error in
                 guard let leagues = leagueModel?.countrys, error == nil else {
+                    print("No leagues")
+                    self.view.addSubview(self.notFoundImage)
+                    self.notFoundImage.isHidden = false
+                    self.leagueTableView.isHidden = true
                     self.leagueTableView.stopSkeletonAnimation()
                     self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
                     return
                 }
+                self.notFoundImage.isHidden = true
+                self.leagueTableView.isHidden = false
                 self.leagueArray = leagues
                 self.leagueTableView.stopSkeletonAnimation()
                 self.view.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
