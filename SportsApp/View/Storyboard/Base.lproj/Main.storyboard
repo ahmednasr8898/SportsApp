@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mDz-lL-i1e">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OcF-aY-Lyf">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
@@ -408,10 +408,40 @@
             </objects>
             <point key="canvasLocation" x="3664" y="-573"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Launch Screen View Controller-->
+        <scene sceneID="Bjg-UH-K0e">
+            <objects>
+                <viewController id="OcF-aY-Lyf" customClass="LaunchScreenViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s7t-i4-Kvv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8b-NC-nB9">
+                                <rect key="frame" x="153" y="434.5" width="108.5" height="37"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="28"/>
+                                <color key="textColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Bs0-aa-HGm"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137254901963" blue="0.70068027210884354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="g8b-NC-nB9" firstAttribute="centerX" secondItem="Bs0-aa-HGm" secondAttribute="centerX" id="7sD-T9-bB8"/>
+                            <constraint firstItem="g8b-NC-nB9" firstAttribute="centerY" secondItem="Bs0-aa-HGm" secondAttribute="centerY" id="ua4-5e-wSF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mylabel" destination="g8b-NC-nB9" id="iLI-F4-fYh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z3p-Md-3wc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1500.0000000000002" y="-216.29464285714286"/>
+        </scene>
+        <!--Tab View Controller-->
         <scene sceneID="sRa-hV-ATi">
             <objects>
-                <tabBarController id="mDz-lL-i1e" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabViewController" id="mDz-lL-i1e" customClass="TabViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ac5-Ci-Ya0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

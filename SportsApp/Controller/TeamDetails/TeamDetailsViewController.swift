@@ -11,7 +11,6 @@ import Kingfisher
 class TeamDetailsViewController: UIViewController {
     
     var selectedTeam: Team?
-    
     @IBOutlet weak var stduimTeamImageView: UIImageView!
     @IBOutlet weak var teamImgaView: UIImageView!
     @IBOutlet weak var teamNameLabel: UILabel!
@@ -21,8 +20,8 @@ class TeamDetailsViewController: UIViewController {
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var tshirtImageView: UIImageView!
     @IBOutlet weak var myViewTwo: UIView!
-    
     @IBOutlet weak var instaButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -23,34 +23,20 @@ class LeagueDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        Helper.shared.getLeagueID { leagueID in
-            self.getAllLatestEvents(leagueID: leagueID)
-        }
+        getLeagueID()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getAllFavoriteLeague()
         checkLeagueIsFoundInFavorite()
-        Helper.shared.getLeagueID { id in
-            self.leagueID = id
-        }
+        setLeagueID()
     }
-    
+
     @IBAction func didPressedOnFavBtn(_ sender: UIBarButtonItem) {
         selectedFavoritBtn(sender: sender)
     }
-    
-    func checkLeagueIsFoundInFavorite(){
-        guard let isFound = leagueIsFoundInFavorite else {return}
-        if isFound {
-            favoriteBtn.isSelected = true
-            self.favoriteBtn.image = UIImage(systemName: "star.fill")
-        }else{
-            self.favoriteBtn.image = UIImage(systemName: "star")
-        }
-    }
-    
+
     func setupTableView(){
         leagueDetailsTableView.delegate = self
         leagueDetailsTableView.dataSource = self
@@ -61,64 +47,6 @@ class LeagueDetailsViewController: UIViewController {
         leagueDetailsTableView.register(LatestEventsTableViewCell.nib(), forCellReuseIdentifier: LatestEventsTableViewCell.identifier)
         
         leagueDetailsTableView.register(TeamsTableViewCell.nib(), forCellReuseIdentifier: TeamsTableViewCell.identifier)
-    }
-  
-    func selectedFavoritBtn(sender: UIBarButtonItem){
-        sender.isSelected = !sender.isSelected
-        if sender.isSelected{
-            //button selected
-            self.favoriteBtn.image = UIImage(systemName: "star.fill")
-            self.addNewLeagueToFavorite()
-        }
-        else{
-            //button non selected
-            self.favoriteBtn.image = UIImage(systemName: "star")
-            nonSelectedLeagueToFavorite()
-        }
-    }
-}
-
-extension LeagueDetailsViewController{
-    func addNewLeagueToFavorite(){
-        let league = LeagueDataModel(context: context)
-        guard let selectedLeague = selectedLeague else {return}
-        league.idLeague = selectedLeague.idLeague
-        league.strYoutube = selectedLeague.strYoutube
-        league.strBadge = selectedLeague.strBadge
-        league.strLeague = selectedLeague.strLeague
-        league.strSport = selectedLeague.strSport
-        league.strWebsite = selectedLeague.strWebsite
-        
-        do{
-            try self.context.save()
-            print("saved")
-        }catch{
-            print("Error in addNewLeagueToFavorite", error.localizedDescription)
-        }
-    }
-    
-    func nonSelectedLeagueToFavorite(){
-        getAllFavoriteLeague()
-        for league in leagues{ //selectedLeague?.idLeague
-            if league.idLeague == leagueID{
-                self.context.delete(league)
-            }
-            print("deleted2")
-            do{
-                try self.context.save()
-            }catch{
-                print("Error when delete league: ", error.localizedDescription)
-            }
-        }
-       
-    }
-    
-    func getAllFavoriteLeague(){
-        do{
-            self.leagues = try self.context.fetch(LeagueDataModel.fetchRequest())
-        }catch{
-            print("Error in getAllFavoriteLeague function: ", error.localizedDescription)
-        }
     }
 }
 

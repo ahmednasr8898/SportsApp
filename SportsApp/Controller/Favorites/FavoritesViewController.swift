@@ -29,7 +29,6 @@ class FavoritesViewController: UIViewController {
         favoritesTabelView.separatorStyle = .none
         favoritesTabelView.estimatedRowHeight = 120
     }
-
 }
 
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource{
