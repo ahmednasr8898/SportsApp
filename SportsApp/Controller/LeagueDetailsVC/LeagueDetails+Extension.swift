@@ -28,9 +28,9 @@ extension LeagueDetailsViewController{
         guard let isFound = leagueIsFoundInFavorite else {return}
         if isFound {
             favoriteBtn.isSelected = true
-            self.favoriteBtn.image = UIImage(systemName: "star.fill")
+            self.favoriteBtn.image = UIImage(systemName: "heart.fill")
         }else{
-            self.favoriteBtn.image = UIImage(systemName: "star")
+            self.favoriteBtn.image = UIImage(systemName: "heart")
         }
     }
 }
@@ -40,12 +40,12 @@ extension LeagueDetailsViewController{
         sender.isSelected = !sender.isSelected
         if sender.isSelected{
             //button selected
-            self.favoriteBtn.image = UIImage(systemName: "star.fill")
+            self.favoriteBtn.image = UIImage(systemName: "heart.fill")
             self.addNewLeagueToFavorite()
         }
         else{
             //button non selected
-            self.favoriteBtn.image = UIImage(systemName: "star")
+            self.favoriteBtn.image = UIImage(systemName: "heart")
             nonSelectedLeagueToFavorite()
         }
     }
@@ -64,7 +64,7 @@ extension LeagueDetailsViewController{
         
         do{
             try self.context.save()
-            print("saved")
+            self.showToastMessege(message: "Add To Favorite")
         }catch{
             print("Error in addNewLeagueToFavorite", error.localizedDescription)
         }
@@ -78,7 +78,6 @@ extension LeagueDetailsViewController{
             if league.idLeague == leagueID{
                 self.context.delete(league)
             }
-            print("deleted2")
             do{
                 try self.context.save()
             }catch{

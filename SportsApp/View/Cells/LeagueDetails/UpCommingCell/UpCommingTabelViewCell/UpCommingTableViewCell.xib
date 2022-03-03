@@ -17,6 +17,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="496" height="178"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notFound" translatesAutoresizingMaskIntoConstraints="NO" id="bxo-zt-HH0">
+                        <rect key="frame" x="25" y="25" width="446" height="128"/>
+                    </imageView>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="n2R-ds-j4N">
                         <rect key="frame" x="0.0" y="0.0" width="496" height="178"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -30,19 +33,25 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="n2R-ds-j4N" secondAttribute="bottom" id="1Xd-WQ-OiO"/>
+                    <constraint firstItem="bxo-zt-HH0" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.9" id="MrN-O2-Upz"/>
                     <constraint firstAttribute="trailing" secondItem="n2R-ds-j4N" secondAttribute="trailing" id="Qg2-Vc-d37"/>
+                    <constraint firstItem="bxo-zt-HH0" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="TkC-pH-bSL"/>
+                    <constraint firstItem="bxo-zt-HH0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="UZa-cQ-rBi"/>
                     <constraint firstItem="n2R-ds-j4N" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Yd5-I5-sXP"/>
                     <constraint firstItem="n2R-ds-j4N" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="kGV-tg-8fd"/>
+                    <constraint firstItem="bxo-zt-HH0" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.719101" id="s3U-xk-nhH"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="notFoundImage" destination="bxo-zt-HH0" id="Vmj-TW-9TS"/>
                 <outlet property="upCommingCollectionView" destination="n2R-ds-j4N" id="HvG-Fo-ugU"/>
             </connections>
             <point key="canvasLocation" x="62" y="74"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="notFound" width="1000" height="780"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

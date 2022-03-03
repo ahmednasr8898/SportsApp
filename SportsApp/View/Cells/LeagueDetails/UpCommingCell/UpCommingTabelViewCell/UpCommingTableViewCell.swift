@@ -12,8 +12,8 @@ class UpCommingTableViewCell: UITableViewCell {
    
     @IBOutlet weak var upCommingCollectionView: UICollectionView!
     var upCommingEventArray: [Event] = []
-    var notFoundImage = UIImageView()
-    
+    @IBOutlet weak var notFoundImage: UIImageView!
+   
     static var identifier = "UpCommingTableViewCell"
     static func nib ()->UINib{
         return UINib(nibName: "UpCommingTableViewCell", bundle: nil)
@@ -23,17 +23,13 @@ class UpCommingTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         setUpCollectionView()
-        createNotFoundImage()
+        setupNotFoundImage()
         Helper.shared.getLeagueID { leagueID in
             self.getAllUpCommingEvents(leagueID: leagueID)
         }
     }
     
-    func createNotFoundImage(){
-        let image = UIImage(named: "404")
-        notFoundImage = UIImageView(image: image!)
-        notFoundImage.frame = CGRect(x: 0, y: 0, width: self.contentView.frame.width, height:  self.contentView.frame.height)
-        notFoundImage.center = self.contentView.center
+    func setupNotFoundImage(){
         self.contentView.layer.cornerRadius = 30
         notFoundImage.layer.cornerRadius = 30
         notFoundImage.layer.borderColor = UIColor.black.cgColor

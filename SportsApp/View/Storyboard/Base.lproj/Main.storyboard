@@ -231,7 +231,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3aK-1T-oKG">
-                        <barButtonItem key="rightBarButtonItem" image="star" catalog="system" id="Say-Dh-mif">
+                        <barButtonItem key="rightBarButtonItem" image="heart" catalog="system" id="Say-Dh-mif">
+                            <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
                                 <action selector="didPressedOnFavBtn:" destination="Mpt-6J-wyP" id="EfI-WT-BOA"/>
                             </connections>
@@ -244,7 +245,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f6h-u9-B70" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2239" y="-573"/>
+            <point key="canvasLocation" x="2284" y="-573"/>
         </scene>
         <!--Team Details View Controller-->
         <scene sceneID="s0u-Ww-AB9">
@@ -261,13 +262,13 @@
                                 <rect key="frame" x="8" y="145.5" width="125" height="128"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arsenal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60j-J8-ToQ">
-                                <rect key="frame" x="133" y="159.5" width="207" height="44"/>
+                                <rect key="frame" x="141" y="159.5" width="207" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arsnal studim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XqH-di-Q1l">
-                                <rect key="frame" x="133" y="197" width="207" height="19.5"/>
+                                <rect key="frame" x="141" y="197" width="207" height="19.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -310,6 +311,7 @@
                                     <constraint firstItem="Sim-5K-Zat" firstAttribute="centerX" secondItem="UHr-H4-0Me" secondAttribute="centerX" id="l3n-bl-ohZ"/>
                                     <constraint firstItem="Sim-5K-Zat" firstAttribute="top" secondItem="88q-2K-sdh" secondAttribute="bottom" constant="8" symbolic="YES" id="vkF-0J-Lel"/>
                                     <constraint firstItem="Sim-5K-Zat" firstAttribute="width" secondItem="UHr-H4-0Me" secondAttribute="width" multiplier="0.57971" id="w0m-vV-lfd"/>
+                                    <constraint firstItem="2Xa-f6-Qld" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="88q-2K-sdh" secondAttribute="trailing" constant="8" symbolic="YES" id="ytI-hT-A74"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQ9-aW-py3">
@@ -384,7 +386,7 @@
                             <constraint firstItem="JwM-aH-Is7" firstAttribute="width" secondItem="JJf-Wk-D7I" secondAttribute="width" multiplier="0.301932" id="hKr-d7-qoz"/>
                             <constraint firstItem="JwM-aH-Is7" firstAttribute="bottom" secondItem="QRw-oF-v9O" secondAttribute="bottom" constant="-40" id="jib-py-JnI"/>
                             <constraint firstItem="XqH-di-Q1l" firstAttribute="top" secondItem="60j-J8-ToQ" secondAttribute="bottom" constant="-6.5" id="pYm-ax-1F3"/>
-                            <constraint firstItem="60j-J8-ToQ" firstAttribute="leading" secondItem="JwM-aH-Is7" secondAttribute="trailing" id="qkP-hC-69d"/>
+                            <constraint firstItem="60j-J8-ToQ" firstAttribute="leading" secondItem="JwM-aH-Is7" secondAttribute="trailing" constant="8" id="qkP-hC-69d"/>
                             <constraint firstItem="JwM-aH-Is7" firstAttribute="leading" secondItem="O3u-kj-WtG" secondAttribute="leading" constant="8" id="r0v-a3-Eht"/>
                             <constraint firstItem="JwM-aH-Is7" firstAttribute="height" secondItem="JJf-Wk-D7I" secondAttribute="height" multiplier="0.142857" id="rVA-3z-vgk"/>
                             <constraint firstItem="60j-J8-ToQ" firstAttribute="width" secondItem="QRw-oF-v9O" secondAttribute="width" multiplier="0.5" id="rqx-Hc-lAI"/>
@@ -406,7 +408,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TVB-xN-2jz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2977" y="-573"/>
+            <point key="canvasLocation" x="3886.9565217391309" y="-573.21428571428567"/>
         </scene>
         <!--Launch Screen View Controller-->
         <scene sceneID="Bjg-UH-K0e">
@@ -620,13 +622,13 @@
     <resources>
         <image name="arsenal" width="512" height="512"/>
         <image name="facebook-48" width="48" height="48"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="heart.circle.fill" catalog="system" width="128" height="121"/>
         <image name="heart.text.square.fill" catalog="system" width="128" height="114"/>
         <image name="instagram-48" width="48" height="48"/>
         <image name="resultnotfound" width="1920" height="1920"/>
         <image name="sportscourt.fill" catalog="system" width="128" height="84"/>
         <image name="st" width="1280" height="720"/>
-        <image name="star" catalog="system" width="128" height="116"/>
         <image name="t-shirt" width="700" height="700"/>
         <image name="twitter-48" width="48" height="48"/>
         <image name="youtube-48" width="48" height="48"/>
@@ -635,6 +637,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

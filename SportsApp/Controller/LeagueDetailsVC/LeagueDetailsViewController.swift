@@ -54,7 +54,6 @@ extension LeagueDetailsViewController{
     func getAllLatestEvents(leagueID: String){
         Networking.shared.getAllLatestEvents(leagueID: leagueID) { latestEventsModel, error in
             guard let latestEvents = latestEventsModel?.events, error == nil else {
-                self.showToastMessege(message: "No Latest Events")
                 print("No getAllLatestEvents")
                 return
             }

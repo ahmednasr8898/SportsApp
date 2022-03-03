@@ -84,8 +84,13 @@ extension LeagueDetailsViewController: UITableViewDelegate, UITableViewDataSourc
                 latestCell.timeMatchLabel.text = ""
                 latestCell.homeScoreTeamLabel.text = ""
                 latestCell.awayScoreTeamLabel.text = ""
-                latestCell.myView.layer.borderColor = UIColor.black.cgColor
-                latestCell.myView.layer.borderWidth = 1
+                latestCell.matchPosterImageView.layer.cornerRadius = 30
+                latestCell.matchPosterImageView.layer.borderColor = UIColor.black.cgColor
+                latestCell.matchPosterImageView.layer.borderWidth = 1
+                latestCell.matchPosterImageView.layer.shadowColor = UIColor.gray.cgColor
+                latestCell.matchPosterImageView.layer.shadowOffset = CGSize(width: 4,height: 4)
+                latestCell.matchPosterImageView.layer.shadowRadius = 5
+                latestCell.matchPosterImageView.layer.shadowOpacity = 0.6
             }
             
             latestCell.matchPosterImageView.layer.cornerRadius = 30

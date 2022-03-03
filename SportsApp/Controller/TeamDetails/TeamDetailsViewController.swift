@@ -21,10 +21,11 @@ class TeamDetailsViewController: UIViewController {
     @IBOutlet weak var tshirtImageView: UIImageView!
     @IBOutlet weak var myViewTwo: UIView!
     @IBOutlet weak var instaButton: UIButton!
+    var notFoundImage = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        createNotFoundImage()
         setupDesign()
         setData()
     }
@@ -45,7 +46,11 @@ class TeamDetailsViewController: UIViewController {
     
     func setData(){
         guard let team = selectedTeam, let teamImageStr = team.strTeamBadge, let teamImageUrl = URL(string: teamImageStr),
-              let tshirtImageStr = team.strTeamJersey, let tshirtImageUrl = URL(string: tshirtImageStr) else {return}
+              let tshirtImageStr = team.strTeamJersey, let tshirtImageUrl = URL(string: tshirtImageStr) else {
+                  checkIsTeamNotFound()
+                  print("no team details")
+                  return
+              }
         
         teamNameLabel.text = team.strTeam
         studimNameLabel.text = team.strStadium
@@ -54,6 +59,27 @@ class TeamDetailsViewController: UIViewController {
         yearLabel.text = team.intFormedYear
         tshirtImageView.kf.setImage(with: tshirtImageUrl)
         
+    }
+    func createNotFoundImage(){
+        let image = UIImage(named: "resultnotfound")
+        notFoundImage = UIImageView(image: image!)
+        notFoundImage.center = self.view.center
+        notFoundImage.frame = CGRect(x: self.view.frame.origin.x , y: 300, width: self.view.frame.width * 0.9, height: self.view.frame.width * 0.8)
+    }
+    
+    func checkIsTeamNotFound(){
+        stduimTeamImageView.isHidden = true
+        teamImgaView.isHidden = true
+        teamNameLabel.isHidden = true
+        studimNameLabel.isHidden = true
+        leagueName.isHidden = true
+        myViewOne.isHidden = true
+        yearLabel.isHidden = true
+        tshirtImageView.isHidden = true
+        myViewTwo.isHidden = true
+        instaButton.isHidden = true
+        self.view.addSubview(notFoundImage)
+        notFoundImage.isHidden = false
     }
     
     @IBAction func youTubeDidPressed(_ sender: UIButton) {
