@@ -65,7 +65,6 @@ extension SportsViewController{
     func checkNetworkConnection(){
         Helper.shared.checkNetworkConnectionUsingRechability { networkIsConnect in
             if networkIsConnect{
-                //Helper.shared.displayMessage(titleMessage: "Network Done", bodyMessage: "network back", messageError: false)
                 self.sportsCollectionView.isHidden = false
                 self.activityView.isHidden = true
                 self.noInternetimageView.isHidden = true

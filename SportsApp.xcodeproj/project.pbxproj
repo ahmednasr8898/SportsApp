@@ -51,7 +51,7 @@
 		CDB1222327CFEB6000DC4754 /* Favorite+TabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1222227CFEB6000DC4754 /* Favorite+TabelView.swift */; };
 		CDB1222527CFF30E00DC4754 /* SportsVC+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1222427CFF30E00DC4754 /* SportsVC+CollectionView.swift */; };
 		CDBC2BD127C8484F00AFCBD0 /* UpCommingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBC2BD027C8484F00AFCBD0 /* UpCommingModel.swift */; };
-		CDD1B90927CEA2B700B80351 /* extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD1B90827CEA2B700B80351 /* extension+UIViewController.swift */; };
+		CDD1B90927CEA2B700B80351 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD1B90827CEA2B700B80351 /* UIViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,7 +103,7 @@
 		CDB1222227CFEB6000DC4754 /* Favorite+TabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Favorite+TabelView.swift"; sourceTree = "<group>"; };
 		CDB1222427CFF30E00DC4754 /* SportsVC+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SportsVC+CollectionView.swift"; sourceTree = "<group>"; };
 		CDBC2BD027C8484F00AFCBD0 /* UpCommingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpCommingModel.swift; sourceTree = "<group>"; };
-		CDD1B90827CEA2B700B80351 /* extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+UIViewController.swift"; sourceTree = "<group>"; };
+		CDD1B90827CEA2B700B80351 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -440,7 +440,7 @@
 		CDD1B90727CEA2A000B80351 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				CDD1B90827CEA2B700B80351 /* extension+UIViewController.swift */,
+				CDD1B90827CEA2B700B80351 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -567,7 +567,7 @@
 			files = (
 				CD61286B27C6F4D700C1DC33 /* LeagueModel.swift in Sources */,
 				CD9DAF6627C598A7003D7133 /* SportsModel.swift in Sources */,
-				CDD1B90927CEA2B700B80351 /* extension+UIViewController.swift in Sources */,
+				CDD1B90927CEA2B700B80351 /* UIViewController+Extension.swift in Sources */,
 				CD56960E27CD7C8300962A29 /* TeamsTableViewCell.swift in Sources */,
 				CD85EF9F27CE78C9006B9D6B /* LeagueCoreData.xcdatamodeld in Sources */,
 				CD56960127CD658200962A29 /* Networking.swift in Sources */,
