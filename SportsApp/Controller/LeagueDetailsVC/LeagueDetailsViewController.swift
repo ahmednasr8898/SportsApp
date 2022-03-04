@@ -17,7 +17,7 @@ class LeagueDetailsViewController: UIViewController {
     var leagueIsFoundInFavorite: Bool?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var favoriteBtn: UIBarButtonItem!
-    var leagues = [LeagueDataModel]()
+    var arrOfLeagues = [LeagueDataModel]()
     var leagueID: String?
 
     var notFoundImage = UIImageView()

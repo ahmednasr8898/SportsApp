@@ -62,11 +62,10 @@ extension LeagueDetailsViewController{
         league.strSport = selectedLeague.strSport
         league.strWebsite = selectedLeague.strWebsite
         
-        do{
-            try self.context.save()
-            self.showToastMessege(message: "Add To Favorite")
-        }catch{
-            print("Error in addNewLeagueToFavorite", error.localizedDescription)
+        CoreDataServices.shared.addNewLeagueToFavorite { addSuccess in
+            if addSuccess{
+                self.showToastMessege(message: "add to favorite")
+            }
         }
     }
 }
@@ -74,7 +73,7 @@ extension LeagueDetailsViewController{
 extension LeagueDetailsViewController{
     func nonSelectedLeagueToFavorite(){
         getAllFavoriteLeague()
-        for league in leagues{ //selectedLeague?.idLeague
+        for league in arrOfLeagues{ //selectedLeague?.idLeague
             if league.idLeague == leagueID{
                 self.context.delete(league)
             }
@@ -89,10 +88,9 @@ extension LeagueDetailsViewController{
 
 extension LeagueDetailsViewController{
     func getAllFavoriteLeague(){
-        do{
-            self.leagues = try self.context.fetch(LeagueDataModel.fetchRequest())
-        }catch{
-            print("Error in getAllFavoriteLeague function: ", error.localizedDescription)
+        CoreDataServices.shared.getAllFavoriteLeague { league, error in
+            guard let leagues = league else {return}
+            self.arrOfLeagues = leagues
         }
     }
 }

@@ -16,7 +16,7 @@ class LeaguesViewController: UIViewController {
     var sportName: String?
     var leagueArray: [Country] = []
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var leagues = [LeagueDataModel]()
+    var arrOfLeagues = [LeagueDataModel]()
     var notFoundImage = UIImageView()
     
     override func viewDidLoad() {
@@ -60,7 +60,7 @@ extension LeaguesViewController{
 
 extension LeaguesViewController{
     func checkIsLeagueFoundInFavoriteOrNot(leagueID: String, complition: @escaping (Bool)->Void){
-        for league in leagues{
+        for league in arrOfLeagues{
             if league.idLeague == leagueID{
                 complition(true)
             }
@@ -68,10 +68,9 @@ extension LeaguesViewController{
     }
     
     func getAllFavoriteLeague(){
-        do{
-            self.leagues = try self.context.fetch(LeagueDataModel.fetchRequest())
-        }catch{
-            print("Error in getAllFavoriteLeague function: ", error.localizedDescription)
+        CoreDataServices.shared.getAllFavoriteLeague { league, error in
+            guard let leagues = league else {return}
+            self.arrOfLeagues = leagues
         }
     }
 }

@@ -18,12 +18,12 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return leagues.count
+        return arrOfLeagues.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteCell", for: indexPath) as! FavoritesTableViewCell
-        let league = leagues[indexPath.row]
+        let league = arrOfLeagues[indexPath.row]
         if let leagueName = league.strLeague, let leagueImageStr = league.strBadge{
             cell.leagueNameLabel.text = leagueName
             cell.leagueImageView.kf.indicatorType = .activity
@@ -48,7 +48,13 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource{
         if editingStyle == .delete{
             self.showConfirmAlert(title: "Delete this league!!!", message: "Are you sure to delete this league!!!") { confimDeleted in
                 if confimDeleted{
-                    self.deletedSelectedItem(row: indexPath.row)
+                    //self.deletedSelectedItem(row: indexPath.row)
+                    let selectedLeague = self.arrOfLeagues[indexPath.row]
+                    CoreDataServices.shared.deletedSelectedItem(league: selectedLeague) { successDeleted in
+                        if successDeleted{
+                            self.getAllFavoriteLeague()
+                        }
+                    }
                 }
             }
         }
@@ -56,7 +62,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as! LeagueDetailsViewController
-        guard let leagueID = leagues[indexPath.row].idLeague, let leagueName = leagues[indexPath.row].strLeague else {return}
+        guard let leagueID = arrOfLeagues[indexPath.row].idLeague, let leagueName = arrOfLeagues[indexPath.row].strLeague else {return}
         Helper.shared.setLeagueID(leagueID: leagueID)
         Helper.shared.setLeagueName(leagueName: leagueName)
         vc.leagueIsFoundInFavorite = true

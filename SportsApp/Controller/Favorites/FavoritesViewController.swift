@@ -11,8 +11,7 @@ class FavoritesViewController: UIViewController {
 
     @IBOutlet weak var favoritesTabelView: UITableView!
     @IBOutlet weak var noResulImageView: UIImageView!
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var leagues = [LeagueDataModel]()
+    var arrOfLeagues = [LeagueDataModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,21 +27,21 @@ class FavoritesViewController: UIViewController {
 
 extension FavoritesViewController{
     func getAllFavoriteLeague(){
-        do{
-            self.leagues = try self.context.fetch(LeagueDataModel.fetchRequest())
-            checkFavoriteIsEmpty()
+        CoreDataServices.shared.getAllFavoriteLeague { leagues, error in
+            guard let leagues = leagues else {return}
+            self.arrOfLeagues = leagues
+            self.checkFavoriteIsEmpty()
             DispatchQueue.main.async {
                 self.favoritesTabelView.reloadData()
             }
-        }catch{
-            print("Error in getAllFavoriteLeague function: ", error.localizedDescription)
         }
+        
     }
 }
 
 extension FavoritesViewController{
     func checkFavoriteIsEmpty(){
-        if leagues.isEmpty{
+        if arrOfLeagues.isEmpty{
             print("fav is empty")
             favoritesTabelView.isHidden = true
             noResulImageView.isHidden = false
@@ -53,16 +52,3 @@ extension FavoritesViewController{
     }
 }
 
-extension FavoritesViewController{
-    func deletedSelectedItem(row: Int){
-        let selectedLeague = leagues[row]
-        self.context.delete(selectedLeague)
-        do{
-            //3- save change
-            try self.context.save()
-        }catch{
-            print("Error when delete league: ", error.localizedDescription)
-        }
-        self.getAllFavoriteLeague()
-    }
-}

@@ -46,7 +46,7 @@ extension LeaguesViewController: SkeletonTableViewDataSource{
             cell.containerView.layer.shadowOpacity = 0.3
             
             cell.youtubeButton.addAction(UIAction(handler: { _ in
-                if let youTubeStr = self.leagueArray[indexPath.row].strYoutube{
+                if let youTubeStr = self.leagueArray[self.leagueArray.count - indexPath.row - 1].strYoutube{
                     UIApplication.shared.open(URL(string: "https://\(youTubeStr)")! as URL, options: [:], completionHandler: nil)
                 }
             }), for: .touchUpInside)
